@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">PasswordAddressBook</string>
+    <string name="app_name">Password AddressBook</string>
     <string name="action_settings">Settings</string>
 
+    <string name="button_add_service">Aggiungi Servizio</string>
+    <string name="button_remove_service">Rimuovi Servizio</string>
+    <string name="button_modify_service">Modifica Servizio</string>
+    <string name="button_view_addressBook">Visualizza Rubrica</string>
+    <string name="button_modify_passwordSystem">Modifica Password di Sistema</string>
+    <string name="button_recover_password">Recupero Password</string>
+    <string name="button_backUp">Back-Up!</string>
+    
 </resources>
