@@ -4,6 +4,8 @@
     <string name="app_name">Password AddressBook</string>
     <string name="action_settings">Settings</string>
 
+    <string name="menu">Menu</string>
+    
     <string name="button_add_service">Aggiungi Servizio</string>
     <string name="button_remove_service">Rimuovi Servizio</string>
     <string name="button_modify_service">Modifica Servizio</string>
