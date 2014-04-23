@@ -14,4 +14,19 @@
     <string name="button_recover_password">Recupero Password</string>
     <string name="button_backUp">Back-Up!</string>
     
+    <string name="firstAccess">PRIMO ACCESSO</string>
+    
+    <string name="help1">
+        Per iniziare devi inserire una password che ti permetterà di visualizzare le credenziali dei tuoi servizi preferiti.
+   	</string>
+    <string name="help2">
+        Non aver paura di dimenticare questa password, potrai sempre recuperarla via SMS cliccando sul pulsante "Recupera Password"
+    </string>
+    
+    <string name="inserisciPassword">Inserisci Password</string>
+    <string name="reinserisciPassword">Reinserisci Password</string>
+    <string name="annulla">Annulla</string>
+    <string name="procedi">Procedi</string>
+    <string name="passwordHint">Password...</string>
+    
 </resources>

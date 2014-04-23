@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="textMenuColor">#FFFFFF</color>
+    <color name="textHelpColor">#800010FF</color>
 </resources>
