@@ -27,6 +27,7 @@
     <string name="reinserisciPassword">Reinserisci Password</string>
     <string name="annulla">Annulla</string>
     <string name="procedi">Procedi</string>
-    <string name="passwordHint">Password...</string>
+    <string name="passwordHintInserisci">Inserisci qui la password...</string>
+    <string name="passwordHintReinserisci">Reinserisci qui la password...</string>
     
 </resources>
