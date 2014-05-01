@@ -13,26 +13,33 @@ public class AddService extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_aggiungi_servizio);
 		
-//		setPersonalFont();
+		setPersonalFont();
 	}
 	
-//	private void setPersonalFont()
-//	{
-//		Typeface nothingYouCouldSay = Typeface.createFromAsset(getAssets(), "fonts/NothingYouCouldSay.ttf");
-//		
-//		TextView help1 = (TextView) findViewById(R.id.help1);
-//		TextView help2 = (TextView) findViewById(R.id.help2);
-//		TextView insPass = (TextView) findViewById(R.id.textInsPassword);
-//		TextView reinsPass = (TextView) findViewById(R.id.textReinsPassword);
-//
-//		Button annulla = (Button) findViewById(R.id.buttAnnula);
-//		Button procedi = (Button) findViewById(R.id.buttProcedi);
-//		
-//		help1.setTypeface(nothingYouCouldSay);
-//		help2.setTypeface(nothingYouCouldSay);
-//		insPass.setTypeface(nothingYouCouldSay);
-//		reinsPass.setTypeface(nothingYouCouldSay);
-//		annulla.setTypeface(nothingYouCouldSay);
-//		procedi.setTypeface(nothingYouCouldSay);
-//	}
+	private void setPersonalFont()
+	{
+		Typeface nothingYouCouldSay = Typeface.createFromAsset(getAssets(), "fonts/NothingYouCouldSay.ttf");
+		
+		TextView serviceType = (TextView) findViewById(R.id.serviceType);
+		TextView esServiceType = (TextView) findViewById(R.id.esServiceType);
+		
+		TextView username = (TextView) findViewById(R.id.username);
+		TextView esUsername = (TextView) findViewById(R.id.esUsername);
+		
+		TextView servicePassword = (TextView) findViewById(R.id.servicePassword);
+		TextView esServicePassword = (TextView) findViewById(R.id.esServicePassword);
+
+		Button annulla = (Button) findViewById(R.id.buttAnnula);
+		Button procedi = (Button) findViewById(R.id.buttProcedi);
+		
+		serviceType.setTypeface(nothingYouCouldSay);
+		esServiceType.setTypeface(nothingYouCouldSay);
+		username.setTypeface(nothingYouCouldSay);
+		esUsername.setTypeface(nothingYouCouldSay);
+		servicePassword.setTypeface(nothingYouCouldSay);
+		esServicePassword.setTypeface(nothingYouCouldSay);
+		
+		annulla.setTypeface(nothingYouCouldSay);
+		procedi.setTypeface(nothingYouCouldSay);
+	}
 }

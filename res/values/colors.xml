@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="textMenuColor">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
     <color name="backgroundColor">#800010FF</color>
     <color name="colorHint">#C0FF0000</color>
+    <color name="red">#FF0000</color>
 </resources>

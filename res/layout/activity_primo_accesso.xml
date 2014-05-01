@@ -28,66 +28,40 @@
 
                 <TextView
                     android:id="@+id/help1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="5dp"
+					style="@style/TextViewPersonal"
                     android:gravity="center"
-                    android:text="@string/help1"
-                    android:textColor="#FFFFFF" />
+                    android:text="@string/help1" />
 
                 <TextView
                     android:id="@+id/help2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
+                    style="@style/TextViewPersonal"
                     android:gravity="center"
-                    android:text="@string/help2"
-                    android:textColor="#FFFFFF" />
+                    android:text="@string/help2" />
 
                 <TextView
                     android:id="@+id/textInsPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    style="@style/TextViewPersonal"
                     android:gravity="center"
-                    android:text="@string/inserisciPassword"
-                    android:textColor="#FFFFFF" />
+                    android:text="@string/inserisciPassword" />
 
                 <EditText
-                    android:id="@+id/editInsPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:ems="10"
+                    android:id="@+id/editInsPassword"                    
                     android:hint="@string/passwordHintInserisci"
                     android:inputType="textPassword"
-                    android:textColor="#FFFFFF"
+                    android:gravity="center"
                     style="@style/EditTextPersonal" />
 
                 <TextView
                     android:id="@+id/textReinsPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    style="@style/TextViewPersonal"
                     android:gravity="center"
-                    android:text="@string/reinserisciPassword"
-                    android:textColor="#FFFFFF" />
+                    android:text="@string/reinserisciPassword" />
 
                 <EditText
                     android:id="@+id/editReinsPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:ems="10"
                     android:hint="@string/passwordHintReinserisci"
                     android:inputType="textPassword"
-                    android:textColor="#FFFFFF"
+                    android:gravity="center"
                     style="@style/EditTextPersonal" />
 
             </LinearLayout>
