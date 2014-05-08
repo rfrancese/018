@@ -64,7 +64,12 @@
         <item name="android:layout_marginRight">10dp</item>
         <item name="android:textColor">@color/red</item>
         <item name="android:textColorHint">@color/colorHint</item>
+        <item name="android:typeface">monospace</item>
         <item name="android:textCursorDrawable">@null</item>
+        <item name="android:lines">1</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:scrollHorizontally">true</item>
+		<item name="android:ellipsize">end</item>
     </style>
     
     <style name="TextViewPersonal">

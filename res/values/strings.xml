@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Password AddressBook</string>
+    <string name="app_name">Rubrica Password</string>
     <string name="action_settings">Settings</string>
 
     <string name="menu">MENU</string>
@@ -27,12 +27,14 @@
     <string name="reinserisciPassword">Reinserisci Password</string>
     <string name="annulla">Annulla</string>
     <string name="procedi">Procedi</string>
-    <string name="passwordHintInserisci">Inserisci qui la password...</string>
-    <string name="passwordHintReinserisci">Reinserisci qui la password...</string>
+    <string name="passwordHintInserisci">Inserisci la password...</string>
+    <string name="passwordHintReinserisci">Reinserisci la password...</string>
+    
+    <string name="addService">AGGIUNGI SERVIZIO</string>
     
     <string name="tipoServizio">Tipo Servizio</string>
     <string name="esTipoServizio">(es. Hotmail, Facebook, Visa)</string>
-    <string name="hintTipoServizio">Inserisci Tipo Servizio...</string>
+    <string name="hintTipoServizio">Inserisci Servizio...</string>
     <string name="nomeUtente">Nome Utente</string>
     <string name="esNomeUtente">(es. Mario Rossi, r.mario@live.it)</string>
     <string name="hintNomeUtente">Inserisci Username...</string>

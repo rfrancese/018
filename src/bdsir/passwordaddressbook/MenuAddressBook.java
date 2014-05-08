@@ -1,21 +1,27 @@
 package bdsir.passwordaddressbook;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MenuAddressBook extends Activity
 {
+	private Intent addService;
+	
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_menu);
 		
 		setPersonalFont();
+		
+		addService = new Intent(getApplicationContext(), AddService.class);
 	}
 	
 	private void setPersonalFont()
@@ -41,5 +47,10 @@ public class MenuAddressBook extends Activity
 		backUp.setTypeface(nothingYouCouldSay);
 		
 		menu.setTypeface(nothingYouCouldSay);
+	}
+	
+	public void viewAddService(View view)
+	{
+		startActivity(addService);
 	}
 }
