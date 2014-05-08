@@ -28,15 +28,17 @@
 
                 <TextView
                     android:id="@+id/help1"
-					style="@style/TextViewPersonal"
+                    style="@style/TextViewPersonal"
                     android:gravity="center"
-                    android:text="@string/help1" />
+                    android:text="@string/help1"
+                    android:textSize="15dp" />
 
                 <TextView
                     android:id="@+id/help2"
                     style="@style/TextViewPersonal"
                     android:gravity="center"
-                    android:text="@string/help2" />
+                    android:text="@string/help2"
+                    android:textSize="15dp" />
 
                 <TextView
                     android:id="@+id/textInsPassword"

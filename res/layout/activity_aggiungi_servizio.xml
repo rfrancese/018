@@ -31,19 +31,22 @@
                         style="@style/TextViewPersonal"
                         android:layout_marginBottom="0dp"
                         android:text="@string/tipoServizio"
-                        android:textSize="20dp" />
+                        android:textSize="25dp" />
 
                     <TextView
                         android:id="@+id/esServiceType"
                         style="@style/TextViewPersonal"
                         android:layout_marginTop="0dp"
                         android:text="@string/esTipoServizio"
-                        android:textSize="14dp" />
+                        android:textSize="18dp" />
 
                     <EditText
                         android:id="@+id/editServiceType"
                         style="@style/EditTextPersonal"
-                        android:hint="@string/hintTipoServizio" />
+                        android:hint="@string/hintTipoServizio" >
+                        
+                        <requestFocus />
+                    </EditText>
 
                 </LinearLayout>
 
@@ -58,22 +61,19 @@
                         style="@style/TextViewPersonal"
                         android:layout_marginBottom="0dp"
                         android:text="@string/nomeUtente"
-                        android:textSize="20dp" />
+                        android:textSize="25dp" />
 
                     <TextView
                         android:id="@+id/esUsername"
                         style="@style/TextViewPersonal"
                         android:layout_marginTop="0dp"
                         android:text="@string/esNomeUtente"
-                        android:textSize="14dp" />
+                        android:textSize="18dp" />
 
                     <EditText
                         android:id="@+id/editUsername"
                         style="@style/EditTextPersonal"
-                        android:hint="@string/hintNomeUtente" >
-
-                        <requestFocus />
-                    </EditText>
+                        android:hint="@string/hintNomeUtente" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -86,20 +86,21 @@
                         style="@style/TextViewPersonal"
                         android:layout_marginBottom="0dp"
                         android:text="@string/password"
-                        android:textSize="20dp" />
+                        android:textSize="25dp" />
 
                     <TextView
                         android:id="@+id/esServicePassword"
                         style="@style/TextViewPersonal"
                         android:layout_marginTop="0dp"
                         android:text="@string/esPassword"
-                        android:textSize="14dp" />
+                        android:textSize="18dp" />
 
                     <EditText
-                        android:id="@+id/editServicePassword"
+                        android:id="@+id/editPassword"
                         style="@style/EditTextPersonal"
                         android:hint="@string/hintPassword"
                         android:inputType="textPassword" />
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -122,7 +123,9 @@
                 android:id="@+id/buttProcedi"
                 style="@style/ButtonProcedi"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:onClick="procedi" />
+
         </LinearLayout>
     </LinearLayout>
 
