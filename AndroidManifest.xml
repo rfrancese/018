@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="bdsir.passwordaddressbook"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.2" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -15,31 +15,52 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
 
-<!--         <activity android:name=".FirstAccessAddressBook" android:label="@string/app_name" android:windowSoftInputMode="stateHidden"> -->
+<!--    Splash Screen dell'applicazione	 -->
+<!--         <activity  -->
+<!--             android:name=".SplashActivity" -->
+<!--             android:label="@string/app_name"> -->
             
 <!--             <intent-filter> -->
 <!--                 <action android:name="android.intent.action.MAIN" /> -->
 <!--                 <category android:name="android.intent.category.LAUNCHER" /> -->
 <!--             </intent-filter> -->
-            
 <!--         </activity> -->
         
-        <activity android:name=".MenuAddressBook" android:label="@string/app_name">
-            
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            
+<!--    Activity per il primo accesso	 -->
+        <activity 
+            android:name=".FirstAccessAddressBook" 
+            android:label="@string/firstAccess" 
+            android:windowSoftInputMode="stateHidden" >
+
+            <intent-filter />
         </activity>
         
-        <activity android:name=".AddService" android:label="@string/app_name" android:windowSoftInputMode="stateHidden">
+<!--    Activity del Menu principale	-->
+        <activity 
+            android:name=".MenuAddressBook" 
+            android:label="@string/app_name" >
             
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--             <intent-filter> -->
+<!--                 <action android:name="android.intent.action.MAIN" /> -->
+<!--                 <category android:name="android.intent.category.LAUNCHER" /> -->
+<!--             </intent-filter> -->
+        </activity>
+        
+<!--    Activity che aggiunge un nuovo servizio al sistema	-->
+        <activity 
+            android:name=".AddService" 
+            android:label="@string/addService" 
+            android:windowSoftInputMode="stateHidden" >
             
+            <intent-filter />
+        </activity>
+        
+<!--    Da eliminare					-->
+        <activity 
+            android:name=".Test"
+            android:label="Test">
+            
+            <intent-filter />
         </activity>
 
     </application>
