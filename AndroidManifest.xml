@@ -4,6 +4,8 @@
     android:versionCode="1"
     android:versionName="1.2" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="15"
@@ -26,7 +28,7 @@
 <!--             </intent-filter> -->
 <!--         </activity> -->
         
-<!--    Activity per il primo accesso	 -->
+<!--    Primo accesso	 -->
         <activity 
             android:name=".FirstAccessAddressBook" 
             android:label="@string/firstAccess" 
@@ -35,30 +37,30 @@
             <intent-filter />
         </activity>
         
-<!--    Activity del Menu principale	-->
+<!--    Menu principale	-->
         <activity 
             android:name=".MenuAddressBook" 
             android:label="@string/app_name" >
             
-<!--             <intent-filter> -->
-<!--                 <action android:name="android.intent.action.MAIN" /> -->
-<!--                 <category android:name="android.intent.category.LAUNCHER" /> -->
-<!--             </intent-filter> -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         
-<!--    Activity che aggiunge un nuovo servizio al sistema	-->
+<!--    Visualizza la rubrica delle password	-->
         <activity 
-            android:name=".AddService" 
-            android:label="@string/addService" 
-            android:windowSoftInputMode="stateHidden" >
+            android:name=".ViewAddressBook"
+            android:label="@string/button_view_addressBook">
             
             <intent-filter />
         </activity>
         
-<!--    Da eliminare					-->
+<!--    Aggiunge un nuovo servizio al sistema	-->
         <activity 
-            android:name=".Test"
-            android:label="Test">
+            android:name=".AddService" 
+            android:label="@string/addService" 
+            android:windowSoftInputMode="stateHidden" >
             
             <intent-filter />
         </activity>
