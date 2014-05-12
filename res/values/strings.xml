@@ -14,6 +14,9 @@
     <string name="button_recover_password">Recupero Password</string>
     <string name="button_backUp">Back-Up!</string>
     
+    <string name="subMenuLogin">Accedi al sistema</string>
+    <string name="subMenuExit">Esci</string>
+    
     <string name="firstAccess">PRIMO ACCESSO</string>
     
     <string name="help1">
@@ -34,12 +37,10 @@
     
     <string name="tipoServizio">Tipo Servizio</string>
     <string name="esTipoServizio">(es. Hotmail, Facebook, Visa)</string>
-    <string name="hintTipoServizio">Inserisci Servizio...</string>
+    <string name="hintText">Clicca qui...</string>
     <string name="nomeUtente">Nome Utente</string>
     <string name="esNomeUtente">(es. Mario Rossi, r.mario@live.it)</string>
-    <string name="hintNomeUtente">Inserisci Username...</string>
     <string name="password">Password</string>
     <string name="esPassword">(es. La password del servizio)</string>
-    <string name="hintPassword">Inserisci Password...</string>
     
 </resources>
