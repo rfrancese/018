@@ -3,9 +3,11 @@
     tools:context="bdsir.passwordaddressbook.PasswordAddressBook" >
 
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:id="@+id/subMenuLogin"
+        android:title="@string/subMenuLogin" />
+    
+    <item
+        android:id="@+id/subMenuExit"
+        android:title="@string/subMenuExit" />
 
 </menu>
