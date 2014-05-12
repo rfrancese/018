@@ -1,6 +1,6 @@
 package bdsir.passwordaddressbook;
 
-import bdsir.listener.CloseActivity;
+import bdsir.passwordaddressbook.listener.CloseActivity;
 import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;

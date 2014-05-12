@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -22,6 +25,28 @@ public class MenuAddressBook extends Activity
 		setPersonalFont();
 		
 		addService = new Intent(getApplicationContext(), AddService.class);
+	}
+	
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
+	    super.onCreateOptionsMenu(menu);
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.home_menu, menu);
+	    return true;
+	}
+	
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+	    switch ( item.getItemId() )
+	    {
+	        case R.id.subMenuLogin:
+	        	startActivity(new Intent(this, AddService.class));
+	        	return true;
+	        case R.id.subMenuExit:
+	        	finish();
+	        	return true;
+	    }
+	    return false;
 	}
 	
 	private void setPersonalFont()
