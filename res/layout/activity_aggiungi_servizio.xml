@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background" >
+    android:background="@drawable/background_img" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,13 +17,18 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical"
+                android:padding="0dp" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/background_list"
                     android:orientation="vertical" >
 
                     <TextView
@@ -38,12 +43,12 @@
                         style="@style/TextViewPersonal"
                         android:layout_marginTop="0dp"
                         android:text="@string/esTipoServizio"
-                        android:textSize="18dp" />
+                        android:textSize="16dp" />
 
                     <EditText
                         android:id="@+id/editServiceType"
                         style="@style/EditTextPersonal"
-                        android:hint="@string/hintTipoServizio" >
+                        android:hint="@string/hintText" >
                         
                         <requestFocus />
                     </EditText>
@@ -53,7 +58,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/background_list"
                     android:orientation="vertical" >
 
                     <TextView
@@ -68,17 +75,18 @@
                         style="@style/TextViewPersonal"
                         android:layout_marginTop="0dp"
                         android:text="@string/esNomeUtente"
-                        android:textSize="18dp" />
+                        android:textSize="16sp" />
 
                     <EditText
                         android:id="@+id/editUsername"
                         style="@style/EditTextPersonal"
-                        android:hint="@string/hintNomeUtente" />
+                        android:hint="@string/hintText" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/background_list"
                     android:orientation="vertical" >
 
                     <TextView
@@ -93,12 +101,12 @@
                         style="@style/TextViewPersonal"
                         android:layout_marginTop="0dp"
                         android:text="@string/esPassword"
-                        android:textSize="18dp" />
+                        android:textSize="16sp" />
 
                     <EditText
                         android:id="@+id/editPassword"
                         style="@style/EditTextPersonal"
-                        android:hint="@string/hintPassword"
+                        android:hint="@string/hintText"
                         android:inputType="textPassword" />
 
                 </LinearLayout>
