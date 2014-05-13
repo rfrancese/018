@@ -15,6 +15,7 @@ import android.widget.TextView;
 public class MenuAddressBook extends Activity
 {
 	private Intent addService;
+	private Intent addressBook;
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -25,6 +26,7 @@ public class MenuAddressBook extends Activity
 		setPersonalFont();
 		
 		addService = new Intent(getApplicationContext(), AddService.class);
+		addressBook = new Intent(getApplicationContext(), ViewAddressBook.class);
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu)
@@ -77,5 +79,10 @@ public class MenuAddressBook extends Activity
 	public void viewAddService(View view)
 	{
 		startActivity(addService);
+	}
+	
+	public void viewAddressBook(View view)
+	{
+		startActivity(addressBook);
 	}
 }
