@@ -64,7 +64,23 @@
             
             <intent-filter />
         </activity>
+        
+<!--    Lista modifica servizio	-->
+		<activity 
+		    android:name=".ListModifyService"
+		    android:label="@string/modificaServizio">
+		    
+		    <intent-filter />
+		</activity>
 
+<!-- 	Modifica servizio	-->
+		<activity 
+		    android:name=".ModifyService"
+		    android:label="@string/modificaServizio">
+		    
+		    <intent-filter />
+		</activity>
+		
     </application>
 
 </manifest>
