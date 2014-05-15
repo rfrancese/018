@@ -32,11 +32,12 @@ public class ViewAddressBook extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.activity_visualizza_password);
+		setContentView(R.layout.activity_list_visualizza_password);
 
 		databseHelper = new DataBaseHelper(this);
-		loadDatabase();prossimita = new ProximitySensor(this);
-	    		
+		loadDatabase();
+		
+		prossimita = new ProximitySensor(this);		
 		sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 		sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
 		sensorManager.registerListener(prossimita, sensor, SensorManager.SENSOR_DELAY_UI);

@@ -46,4 +46,5 @@
     <string name="visualizzaNomeUtente">Username:</string>
     <string name="visualizzaPassword">Password:</string>
     
+    <string name="modificaServizio">Modifica Servizio</string>
 </resources>

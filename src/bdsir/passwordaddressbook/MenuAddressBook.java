@@ -2,20 +2,18 @@ package bdsir.passwordaddressbook;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.TextView;
 
 public class MenuAddressBook extends Activity
 {
 	private Intent addService;
 	private Intent addressBook;
+	private Intent modifyService;
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -23,10 +21,9 @@ public class MenuAddressBook extends Activity
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_menu);
 		
-		setPersonalFont();
-		
 		addService = new Intent(getApplicationContext(), AddService.class);
 		addressBook = new Intent(getApplicationContext(), ViewAddressBook.class);
+		modifyService = new Intent(getApplicationContext(), ListModifyService.class);
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu)
@@ -50,33 +47,8 @@ public class MenuAddressBook extends Activity
 	    }
 	    return false;
 	}
-	
-	private void setPersonalFont()
-	{
-		Typeface nothingYouCouldSay = Typeface.createFromAsset(getAssets(), "fonts/NothingYouCouldSay.ttf");
-		
-		Button visualizzaRubrica = (Button) findViewById(R.id.buttViewAddressBook);
-		Button aggiungiServizio = (Button) findViewById(R.id.buttAddService);
-		Button modificaServizio = (Button) findViewById(R.id.buttModifyService);
-		Button rimuoviServizio = (Button) findViewById(R.id.buttRemoveService);
-		Button modificaPasswordSistema = (Button) findViewById(R.id.buttModifyPasswordSystem);
-		Button recuperaPassword = (Button) findViewById(R.id.buttRecoverPassword);
-		Button backUp = (Button) findViewById(R.id.buttBackUp);
-		
-		TextView menu = (TextView) findViewById(R.id.textMenu);
-		
-		visualizzaRubrica.setTypeface(nothingYouCouldSay);
-		aggiungiServizio.setTypeface(nothingYouCouldSay);
-		modificaServizio.setTypeface(nothingYouCouldSay);
-		rimuoviServizio.setTypeface(nothingYouCouldSay);
-		modificaPasswordSistema.setTypeface(nothingYouCouldSay);
-		recuperaPassword.setTypeface(nothingYouCouldSay);
-		backUp.setTypeface(nothingYouCouldSay);
-		
-		menu.setTypeface(nothingYouCouldSay);
-	}
-	
-	public void viewAddService(View view)
+    
+	public void addService(View view)
 	{
 		startActivity(addService);
 	}
@@ -84,5 +56,10 @@ public class MenuAddressBook extends Activity
 	public void viewAddressBook(View view)
 	{
 		startActivity(addressBook);
+	}
+	
+	public void modifyService(View view)
+	{
+		startActivity(modifyService);
 	}
 }

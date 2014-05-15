@@ -4,4 +4,5 @@
     <color name="backgroundColor">#800010FF</color>
     <color name="colorHint">#FFFF0000</color>
     <color name="colorText">#FF0000</color>
+    <color name="trasparente">#00FFFFFF</color>
 </resources>

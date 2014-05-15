@@ -19,52 +19,73 @@
         <ScrollView
             android:id="@+id/scrollView1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" >
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical" >
 
-                <TextView
-                    android:id="@+id/help1"
-                    style="@style/TextViewPersonal"
-                    android:gravity="center"
-                    android:text="@string/help1"
-                    android:textSize="15dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_list"
+                    android:orientation="vertical" >
 
-                <TextView
-                    android:id="@+id/help2"
-                    style="@style/TextViewPersonal"
-                    android:gravity="center"
-                    android:text="@string/help2"
-                    android:textSize="15dp" />
+                    <TextView
+                        android:id="@+id/help1"
+                        style="@style/TextViewPersonal"
+                        android:gravity="center"
+                        android:text="@string/help1"
+                        android:textSize="15dp" />
 
-                <TextView
-                    android:id="@+id/textInsPassword"
-                    style="@style/TextViewPersonal"
-                    android:gravity="center"
-                    android:text="@string/inserisciPassword" />
+                    <TextView
+                        android:id="@+id/help2"
+                        style="@style/TextViewPersonal"
+                        android:gravity="center"
+                        android:text="@string/help2"
+                        android:textSize="15dp" />
+                </LinearLayout>
 
-                <EditText
-                    android:id="@+id/editInsPassword"                    
-                    android:hint="@string/passwordHintInserisci"
-                    android:inputType="textPassword"
-                    android:gravity="center"
-                    style="@style/EditTextPersonal" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/background_list"
+                    android:orientation="vertical" >
 
-                <TextView
-                    android:id="@+id/textReinsPassword"
-                    style="@style/TextViewPersonal"
-                    android:gravity="center"
-                    android:text="@string/reinserisciPassword" />
+                    <TextView
+                        android:id="@+id/textInsPassword"
+                        style="@style/TextViewPersonal"
+                        android:gravity="center"
+                        android:text="@string/inserisciPassword" />
 
-                <EditText
-                    android:id="@+id/editReinsPassword"
-                    android:hint="@string/passwordHintReinserisci"
-                    android:inputType="textPassword"
-                    android:gravity="center"
-                    style="@style/EditTextPersonal" />
+                    <EditText
+                        android:id="@+id/editInsPassword"
+                        style="@style/EditTextPersonal"
+                        android:layout_width="match_parent"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="@string/passwordHintInserisci"
+                        android:inputType="textPassword" />
+
+                    <TextView
+                        android:id="@+id/textReinsPassword"
+                        style="@style/TextViewPersonal"
+                        android:gravity="center"
+                        android:text="@string/reinserisciPassword" />
+
+                    <EditText
+                        android:id="@+id/editReinsPassword"
+                        style="@style/EditTextPersonal"
+                        android:layout_width="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="@string/passwordHintReinserisci"
+                        android:inputType="textPassword" />
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -73,8 +94,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:gravity="center|bottom" >
+            android:gravity="center|bottom"
+            android:paddingBottom="10dp" >
 
             <Button
                 android:id="@+id/buttAnnula"

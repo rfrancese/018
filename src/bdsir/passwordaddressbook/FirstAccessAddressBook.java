@@ -18,7 +18,7 @@ public class FirstAccessAddressBook extends Activity
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_primo_accesso);
 		
-		setPersonalFont();
+//		setPersonalFont();
 		setListener();
 	}
 	

@@ -28,6 +28,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/background_list"
                     android:orientation="vertical" >
 
@@ -86,6 +87,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
                     android:background="@drawable/background_list"
                     android:orientation="vertical" >
 
@@ -106,8 +108,7 @@
                     <EditText
                         android:id="@+id/editPassword"
                         style="@style/EditTextPersonal"
-                        android:hint="@string/hintText"
-                        android:inputType="textPassword" />
+                        android:hint="@string/hintText" />
 
                 </LinearLayout>
 
@@ -118,8 +119,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:gravity="center|bottom" >
+            android:gravity="center|bottom"
+            android:paddingBottom="10dp" >
 
             <Button
                 android:id="@+id/buttAnnula"
