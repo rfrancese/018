@@ -1,50 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="app_name">Rubrica Password</string>
-    <string name="action_settings">Settings</string>
-
-    <string name="menu">MENU</string>
+	<string name="app_name">Rubrica Password</string>
     
-    <string name="button_add_service">Aggiungi Servizio</string>
-    <string name="button_remove_service">Rimuovi Servizio</string>
-    <string name="button_modify_service">Modifica Servizio</string>
-    <string name="button_view_addressBook">Visualizza Rubrica</string>
-    <string name="button_modify_passwordSystem">Modifica Password di Sistema</string>
-    <string name="button_recover_password">Recupero Password</string>
-    <string name="button_backUp">Back-Up!</string>
-    
-    <string name="subMenuLogin">Accedi al sistema</string>
-    <string name="subMenuExit">Esci</string>
-    
-    <string name="firstAccess">PRIMO ACCESSO</string>
-    
+<!--	Activity Primo Accesso	-->
+	<string name="firstAccess">Primo Accesso</string>
     <string name="help1">
         Per iniziare devi inserire una password che ti permetterà di visualizzare le credenziali dei tuoi servizi preferiti.
    	</string>
     <string name="help2">
         Non aver paura di dimenticare questa password, potrai sempre recuperarla via SMS cliccando sul pulsante "Recupera Password"
     </string>
-    
     <string name="inserisciPassword">Inserisci Password</string>
     <string name="reinserisciPassword">Reinserisci Password</string>
-    <string name="annulla">Annulla</string>
-    <string name="procedi">Procedi</string>
-    <string name="passwordHintInserisci">Inserisci la password...</string>
-    <string name="passwordHintReinserisci">Reinserisci la password...</string>
+    <string name="inserisciNumCell">Inserisci il tuo numero di cellulare</string>
     
-    <string name="addService">AGGIUNGI SERVIZIO</string>
+<!--	Activity Rubrica Password	-->
+    <string name="visualizzaNomeUtente">Username:</string>
+    <string name="visualizzaPassword">Password:</string>
     
+<!--    Sub Menu Rubrica Password	-->
+    <string name="subMenuLogin">Accedi al sistema</string>
+    <string name="subMenuModifica">Modifica Password</string>
+    <string name="subMenuElimina">Elimina Servizio</string>
+    <string name="subMenuPassSistema">Modifica Password Sistema</string>
+    <string name="subMenuRecupera">Recupero Password Sistema</string>
+    <string name="subMenuBackUp">Back-Up!</string>
+    <string name="subMenuExit">Esci</string>
+
+<!--	Activity Aggiungi Servizio -->
+    <string name="addService">Aggiungi Servizio</string>
     <string name="tipoServizio">Tipo Servizio</string>
     <string name="esTipoServizio">(es. Hotmail, Facebook, Visa)</string>
-    <string name="hintText">Clicca qui...</string>
     <string name="nomeUtente">Nome Utente</string>
     <string name="esNomeUtente">(es. Mario Rossi, r.mario@live.it)</string>
     <string name="password">Password</string>
     <string name="esPassword">(es. La password del servizio)</string>
+    <string name="hintText">Cliacca qui&#8230;</string>
     
-    <string name="visualizzaNomeUtente">Username:</string>
-    <string name="visualizzaPassword">Password:</string>
+<!--     Popup Menu -->
+	<string name="popupModifica">Modifica</string>
+	<string name="popupElimina">Elimina</string>
+	
+<!-- 	Dialog accedi	-->
+	<string name="msgAccediDialog">Inserisci la password di sistema</string>
+	
+<!-- 	Dialog modifica password -->
+	<string name="msgVecchiaPassDialog">Inserisci la vecchia password</string>
+	<string name="msgNuovaPassDialog">Inserisci la nuova password</string>
+	<string name="msgReinsPassDialog">Reinserisci la nuova password</string>
+	
+<!-- 	Dialog recupero password -->
+    <string name="ok">OK!</string>
+	<string name="recuperoPasswordDescription">E\' stato inviato un SMS contenente la password del sistema al numero</string>
     
-    <string name="modificaServizio">Modifica Servizio</string>
+    <string name="annulla">Annulla</string>
+    <string name="procedi">Procedi</string>
+    <string name="hidePassword">**********</string>
+    <string name="textView">Text View</string>
+    <string name="imgEmpty">Immagine non trovata</string>
+    <string name="msgEliminaDialog">Sei sicuro di voler eliminare il servizio?</string>
+    
 </resources>
