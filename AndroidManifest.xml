@@ -2,11 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="bdsir.passwordaddressbook"
     android:versionCode="1"
-    android:versionName="1.2" >
+    android:versionName="1.8" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+	<uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
     
-    <uses-sdk
+    <uses-sdk 
         android:minSdkVersion="14"
         android:targetSdkVersion="15"
         android:maxSdkVersion="18" />
@@ -18,29 +21,9 @@
         android:theme="@style/AppTheme" >
 
 <!--    Splash Screen dell'applicazione	 -->
-<!--         <activity  -->
-<!--             android:name=".SplashActivity" -->
-<!--             android:label="@string/app_name"> -->
-            
-<!--             <intent-filter> -->
-<!--                 <action android:name="android.intent.action.MAIN" /> -->
-<!--                 <category android:name="android.intent.category.LAUNCHER" /> -->
-<!--             </intent-filter> -->
-<!--         </activity> -->
-        
-<!--    Primo accesso	 -->
         <activity 
-            android:name=".FirstAccessAddressBook" 
-            android:label="@string/firstAccess" 
-            android:windowSoftInputMode="stateHidden" >
-
-            <intent-filter />
-        </activity>
-        
-<!--    Menu principale	-->
-        <activity 
-            android:name=".MenuAddressBook" 
-            android:label="@string/app_name" >
+            android:name=".SplashActivity"
+            android:label="@string/app_name">
             
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,10 +31,18 @@
             </intent-filter>
         </activity>
         
+<!--    Primo accesso	 -->
+        <activity 
+            android:name=".FirstAccessAddressBook" 
+            android:windowSoftInputMode="stateHidden" >
+
+            <intent-filter />
+        </activity>
+        
 <!--    Visualizza la rubrica delle password	-->
         <activity 
             android:name=".ViewAddressBook"
-            android:label="@string/button_view_addressBook">
+            android:windowSoftInputMode="stateHidden" >
             
             <intent-filter />
         </activity>
@@ -59,28 +50,28 @@
 <!--    Aggiunge un nuovo servizio al sistema	-->
         <activity 
             android:name=".AddService" 
-            android:label="@string/addService" 
             android:windowSoftInputMode="stateHidden" >
             
             <intent-filter />
         </activity>
         
-<!--    Lista modifica servizio	-->
-		<activity 
-		    android:name=".ListModifyService"
-		    android:label="@string/modificaServizio">
+<!--    Lista modifica password	-->
+		<activity android:name=".ListModifyPassword" >
 		    
 		    <intent-filter />
 		</activity>
 
 <!-- 	Modifica servizio	-->
-		<activity 
-		    android:name=".ModifyService"
-		    android:label="@string/modificaServizio">
+		<activity android:name=".ModifyPassword" >
 		    
 		    <intent-filter />
 		</activity>
 		
-    </application>
-
+<!-- 	Lista elimina servizio 	-->
+		<activity android:name=".ListRemoveService">
+		    
+		    <intent-filter />
+		</activity>    
+	
+	</application>
 </manifest>
