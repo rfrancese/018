@@ -17,7 +17,7 @@ public class AccediDialog
 	private Dialog dialog;
 	private Activity activity;
 	private DataBaseHelper dataBaseHelper;
-	
+		
 	public AccediDialog(Activity activity)
 	{
 		this.activity = activity;
@@ -28,7 +28,7 @@ public class AccediDialog
     	dialog.setContentView(R.layout.dialog_accedi);
     	dialog.setCancelable(false);
     	dialog.show();
-    	
+
     	setListener();
 	}
 	
@@ -39,6 +39,7 @@ public class AccediDialog
 			public void onClick(View v)
 			{
 				dialog.dismiss();
+				activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 			}
 		});
     	
@@ -54,19 +55,16 @@ public class AccediDialog
 				
 				if(db.rawQuery(query, whereArgs).getCount() > 0)
 				{
-					db.close();
 					dialog.dismiss();
 					((ViewAddressBook) activity).showPassword();
-					
-					activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 				}
 				else
 				{
-					db.close();
 					new PersonalDialog(activity, "Errore", "La password inserita non e' corretta", "Indietro");
-					
-					activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 				}
+				
+				db.close();
+				activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 			}
 		});
 	}

@@ -71,7 +71,7 @@ public class ModifyPassword extends Activity
 			else
 			{
 				db.close();
-				new PersonalDialog(this, "DATI SALVATI", "I dati inseriti sono stati salvati nel database.", "Rubrica");
+				new PersonalDialog(this, "DATI SALVATI", "I dati inseriti sono stati salvati nel database.", "Chiudi");
 			}
 		}
 	}
