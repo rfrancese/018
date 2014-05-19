@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayoutElimina"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+     <TextView
+         android:layout_width="match_parent"
+         android:layout_height="@dimen/heightTopAppName"
+         android:background="@color/backgroundColorSkyBlue"
+         android:gravity="center"
+         android:text="@string/subMenuElimina"
+         android:textSize="@dimen/infoTextSize" />
+
+     <ListView
+         android:id="@+id/listEliminaPassword"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:background="@color/grey"
+         android:listSelector="@color/trasparente" >
+
+     </ListView>
+
+ </LinearLayout>

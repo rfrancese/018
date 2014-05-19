@@ -1,141 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_img" >
+    android:background="@color/grey"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/heightTopAppName"
+        android:background="@color/backgroundColorSkyBlue"
+        android:gravity="center"
+        android:text="@string/addService"
+        android:textSize="@dimen/infoTextSize" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            android:padding="0dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/background_list"
+                android:orientation="vertical" >
+
+                <TextView
+                    style="@style/TextViewPersonal"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/tipoServizio"
+                    android:textSize="@dimen/infoTextSize" />
+
+                <TextView
+                    style="@style/TextViewPersonal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="0dp"
+                    android:text="@string/esTipoServizio"
+                    android:textSize="@dimen/normalTextSize" />
+
+                <EditText
+                    android:id="@+id/editServiceType"
+                    style="@style/EditTextPersonal"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:hint="@string/hintText" >
+                    
+                    <requestFocus />
+                </EditText>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/background_list"
+                android:orientation="vertical" >
+
+                <TextView
+                    style="@style/TextViewPersonal"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/nomeUtente"
+                    android:textSize="@dimen/infoTextSize" />
+
+                <TextView
+                    style="@style/TextViewPersonal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="0dp"
+                    android:text="@string/esNomeUtente"
+                    android:textSize="@dimen/normalTextSize" />
+
+                <EditText
+                    android:id="@+id/editUsername"
+                    style="@style/EditTextPersonal"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:hint="@string/hintText" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/background_list"
+                android:orientation="vertical" >
+
+                <TextView
+                    style="@style/TextViewPersonal"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/password"
+                    android:textSize="@dimen/infoTextSize" />
+
+                <TextView
+                    style="@style/TextViewPersonal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="0dp"
+                    android:text="@string/esPassword"
+                    android:textSize="@dimen/normalTextSize" />
+
+                <EditText
+                    android:id="@+id/editPassword"
+                    style="@style/EditTextPersonal"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:hint="@string/hintText"
+                    android:textColorHint="@color/grey" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/backgroundColor"
-        android:orientation="vertical" >
+        android:gravity="center|bottom"
+        android:paddingBottom="10dp" >
 
-        <ScrollView
-            android:id="@+id/scrollView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+        <Button
+            android:id="@+id/buttAnnula"
+            style="@style/ButtonAnnulla"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical"
-                android:padding="0dp" >
+        <Button
+            android:id="@+id/buttProcedi"
+            style="@style/ButtonProcedi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="procedi" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/background_list"
-                    android:orientation="vertical" >
-
-                    <TextView
-                        android:id="@+id/serviceType"
-                        style="@style/TextViewPersonal"
-                        android:layout_marginBottom="0dp"
-                        android:text="@string/tipoServizio"
-                        android:textSize="25dp" />
-
-                    <TextView
-                        android:id="@+id/esServiceType"
-                        style="@style/TextViewPersonal"
-                        android:layout_marginTop="0dp"
-                        android:text="@string/esTipoServizio"
-                        android:textSize="16dp" />
-
-                    <EditText
-                        android:id="@+id/editServiceType"
-                        style="@style/EditTextPersonal"
-                        android:hint="@string/hintText" >
-                        
-                        <requestFocus />
-                    </EditText>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/background_list"
-                    android:orientation="vertical" >
-
-                    <TextView
-                        android:id="@+id/username"
-                        style="@style/TextViewPersonal"
-                        android:layout_marginBottom="0dp"
-                        android:text="@string/nomeUtente"
-                        android:textSize="25dp" />
-
-                    <TextView
-                        android:id="@+id/esUsername"
-                        style="@style/TextViewPersonal"
-                        android:layout_marginTop="0dp"
-                        android:text="@string/esNomeUtente"
-                        android:textSize="16sp" />
-
-                    <EditText
-                        android:id="@+id/editUsername"
-                        style="@style/EditTextPersonal"
-                        android:hint="@string/hintText" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/background_list"
-                    android:orientation="vertical" >
-
-                    <TextView
-                        android:id="@+id/servicePassword"
-                        style="@style/TextViewPersonal"
-                        android:layout_marginBottom="0dp"
-                        android:text="@string/password"
-                        android:textSize="25dp" />
-
-                    <TextView
-                        android:id="@+id/esServicePassword"
-                        style="@style/TextViewPersonal"
-                        android:layout_marginTop="0dp"
-                        android:text="@string/esPassword"
-                        android:textSize="16sp" />
-
-                    <EditText
-                        android:id="@+id/editPassword"
-                        style="@style/EditTextPersonal"
-                        android:hint="@string/hintText" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </ScrollView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center|bottom"
-            android:paddingBottom="10dp" >
-
-            <Button
-                android:id="@+id/buttAnnula"
-                style="@style/ButtonAnnulla"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:id="@+id/buttProcedi"
-                style="@style/ButtonProcedi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="procedi" />
-
-        </LinearLayout>
     </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>
