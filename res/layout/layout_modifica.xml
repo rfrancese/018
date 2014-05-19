@@ -2,31 +2,37 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
-
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="2dp"
         android:background="@drawable/background_list"
         android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/modifyTextService"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:text="TextView"
-            android:textSize="24dp" />
-
-        <TextView
-            android:id="@+id/modifyTextUsername"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="5dp"
-            android:text="TextView"
-            android:textSize="16dp" />
-        
-    </LinearLayout>
-
+	    <TextView
+	        android:id="@+id/modifyTextService"
+	        style="@style/TextViewPersonal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:layout_marginLeft="5dp"
+	        android:layout_marginRight="5dp"
+	        android:layout_marginTop="5dp"
+	        android:text="@string/textView"
+	        android:textSize="@dimen/infoTextSize" />
+	
+	    <TextView
+	        android:id="@+id/modifyTextUsername"
+	        style="@style/TextViewPersonal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:layout_marginBottom="5dp"
+	        android:layout_marginLeft="5dp"
+	        android:layout_marginRight="5dp"
+	        android:text="@string/textView"
+	        android:textSize="@dimen/normalTextSize" />
+    
+	</LinearLayout>
 </FrameLayout>
