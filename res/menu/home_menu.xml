@@ -7,6 +7,26 @@
         android:title="@string/subMenuLogin" />
     
     <item
+        android:id="@+id/subMenuModifica"
+        android:title="@string/subMenuModifica" />
+    
+    <item
+        android:id="@+id/subMenuElimina"
+        android:title="@string/subMenuElimina" />
+    
+    <item
+        android:id="@+id/subMenuPassSistema"
+        android:title="@string/subMenuPassSistema" />
+    
+    <item
+        android:id="@+id/subMenuRecupera"
+        android:title="@string/subMenuRecupera" />
+    
+    <item
+        android:id="@+id/subMenuBackUp"
+        android:title="@string/subMenuBackUp" />
+     
+    <item
         android:id="@+id/subMenuExit"
         android:title="@string/subMenuExit" />
 
