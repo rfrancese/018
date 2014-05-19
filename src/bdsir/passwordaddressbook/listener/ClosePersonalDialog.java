@@ -1,10 +1,8 @@
 package bdsir.passwordaddressbook.listener;
 
-import bdsir.passwordaddressbook.MenuAddressBook;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.content.Intent;
 
 public class ClosePersonalDialog implements OnClickListener
 {

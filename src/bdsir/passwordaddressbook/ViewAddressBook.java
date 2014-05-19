@@ -5,9 +5,15 @@ import java.util.HashMap;
 
 import bdsir.passwordaddressbook.database.DataBaseHelper;
 import bdsir.passwordaddressbook.database.RecordPassword;
+import bdsir.passwordaddressbook.dialog.PersonalDialog;
+import bdsir.passwordaddressbook.listener.MenuItemClick;
 import bdsir.passwordaddressbook.listener.ProximitySensor;
+import bdsir.passwordaddressbook.listener.RecordClick;
+import bdsir.passwordaddressbook.tools.EmptyControllRecord;
+import bdsir.passwordaddressbook.tools.MenuItemId;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.hardware.Sensor;
@@ -16,17 +22,23 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.SimpleAdapter;
 
 public class ViewAddressBook extends Activity
 {
+	public static boolean stateShowPassword = false;
+	
 	private DataBaseHelper databseHelper;
 	private ArrayList<HashMap<String, Object>> data;
 	private SensorManager sensorManager;
 	private ProximitySensor prossimita;
 	private Sensor sensor;
+	private ListView viewAddressBok;
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -42,23 +54,37 @@ public class ViewAddressBook extends Activity
 		sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
 		sensorManager.registerListener(prossimita, sensor, SensorManager.SENSOR_DELAY_UI);
 	}
+	protected void onRestart()
+	{
+		super.onRestart();
+		loadDatabase();
+	}
+	
+	protected void onResume()
+	{
+		super.onResume();
+		sensorManager.registerListener(prossimita, sensor, SensorManager.SENSOR_DELAY_UI);
+	}
 	
 	protected void onPause()
     {
         super.onPause();
         sensorManager.unregisterListener(prossimita, sensor);
+        hidePassword();
     }
     
     protected void onStop()
     {
         super.onStop();
         sensorManager.unregisterListener(prossimita, sensor);
+        hidePassword();
     }
     
     protected void onDestroy()
     {
         super.onDestroy();
         sensorManager.unregisterListener(prossimita, sensor);
+        hidePassword();
     }
 	
 	public boolean onCreateOptionsMenu(Menu menu)
@@ -69,19 +95,18 @@ public class ViewAddressBook extends Activity
 	    return true;
 	}
 	
+	public void showPopup(View view)
+	{
+		PopupMenu popup = new PopupMenu (this , view); 
+	    MenuInflater inflater = popup.getMenuInflater(); 
+	    inflater.inflate(R.menu.home_menu, popup.getMenu());
+	    popup.setOnMenuItemClickListener(new MenuItemClick(this));
+	    popup.show(); 
+	}
+	
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
-	    switch ( item.getItemId() )
-	    {
-	        case R.id.subMenuLogin:
-	        	showPassword();
-	        	return true;
-	        	
-	        case R.id.subMenuExit:
-	        	finish();
-	        	return true;
-	    }
-	    return false;
+	   return MenuItemId.getMenuItemClick(this, item);
 	}
 	
 	private void loadDatabase()
@@ -93,6 +118,7 @@ public class ViewAddressBook extends Activity
 		
 		ArrayList<RecordPassword> list = new ArrayList<RecordPassword>();
 		
+		boolean flag = false;
 		while(cursor.moveToNext())
 		{
 			RecordPassword record = new RecordPassword
@@ -103,7 +129,11 @@ public class ViewAddressBook extends Activity
 										);
 			
 			list.add(record);
+			
+			flag = true;
 		}
+		
+		EmptyControllRecord.controllRecord(flag, (LinearLayout) findViewById(R.id.linearLayoutRubrica), R.drawable.empty_password_rubrica);
 		
 		data = new ArrayList<HashMap<String,Object>>();
 		
@@ -121,7 +151,7 @@ public class ViewAddressBook extends Activity
 		}
 		
         databseHelper.close();
-        
+        viewAddressBok = (ListView) findViewById(R.id.listRubricaPassword);
         hidePassword();
 	}
 	
@@ -132,7 +162,10 @@ public class ViewAddressBook extends Activity
 
         SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), data, R.layout.layout_rubrica, from, to);
 
-        ((ListView) findViewById(R.id.listRubricaPassword)).setAdapter(adapter);
+        viewAddressBok.setAdapter(adapter);
+        viewAddressBok.setOnItemClickListener(new RecordClick(this));
+        
+        stateShowPassword = false;
 	}
 	
 	public void showPassword()
@@ -142,6 +175,19 @@ public class ViewAddressBook extends Activity
 
         SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), data, R.layout.layout_rubrica, from, to);
 
-        ((ListView) findViewById(R.id.listRubricaPassword)).setAdapter(adapter);
+        viewAddressBok.setAdapter(adapter);
+        viewAddressBok.setOnItemClickListener(new RecordClick(this));
+        
+        stateShowPassword = true;
+	}
+	
+	public void addServizio(View view)
+	{
+		if(ViewAddressBook.stateShowPassword)
+		{
+			startActivity(new Intent(getApplicationContext(), AddService.class));
+		}
+		else
+			new PersonalDialog(this, "Attenzione", "Devi prima effettuare l'accesso al sistema!", "Indietro");
 	}
 }

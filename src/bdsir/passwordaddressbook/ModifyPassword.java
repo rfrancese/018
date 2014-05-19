@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class ModifyService extends Activity
+public class ModifyPassword extends Activity
 {
 	private DataBaseHelper dataBaseHelper;
 	private String servizio;
@@ -24,7 +24,7 @@ public class ModifyService extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.activity_modifica_servizio);
+		setContentView(R.layout.activity_modifica_password);
 		
 		setListener();
 		setModifyParameter();
@@ -71,7 +71,7 @@ public class ModifyService extends Activity
 			else
 			{
 				db.close();
-				new PersonalDialog(this, "DATI SALVATI", "I dati inseriti sono stati salvati nel database.", "Chiudi");
+				new PersonalDialog(this, "DATI SALVATI", "I dati inseriti sono stati salvati nel database.", "Rubrica");
 			}
 		}
 	}

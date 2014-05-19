@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import bdsir.passwordaddressbook.database.DataBaseHelper;
-import bdsir.passwordaddressbook.listener.CloseActivity;
 import bdsir.passwordaddressbook.listener.ListItemModifica;
+import bdsir.passwordaddressbook.tools.EmptyControllRecord;
 import android.app.Activity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Window;
-import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
-public class ListModifyService extends Activity
+public class ListModifyPassword extends Activity
 {
 	private DataBaseHelper databseHelper;
 	
@@ -23,17 +23,10 @@ public class ListModifyService extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.activity_list_modifica_servizio);
+		setContentView(R.layout.activity_list_modifica_password);
 		
-		setListener();
 		databseHelper = new DataBaseHelper(this);
 		loadService();
-	}
-	
-	private void setListener()
-	{
-		Button annulla = (Button) findViewById(R.id.buttAnnula);
-		annulla.setOnClickListener(new CloseActivity(this));
 	}
 	
 	private void loadService()
@@ -45,6 +38,7 @@ public class ListModifyService extends Activity
 		
 		ArrayList<HashMap<String,Object>> data = new ArrayList<HashMap<String,Object>>();
 		
+		boolean flag = false;
 		while(cursor.moveToNext())
 		{
 			HashMap<String,Object> serviceMap = new HashMap<String, Object>();
@@ -52,8 +46,12 @@ public class ListModifyService extends Activity
 			serviceMap.put("username", cursor.getString(cursor.getColumnIndex("username")));
 			
 			data.add(serviceMap);
+			
+			flag = true;
 		}
-
+		
+		EmptyControllRecord.controllRecord(flag, (LinearLayout) findViewById(R.id.linearLayoutModifica), R.drawable.empty_password); 
+		
         databseHelper.close();
         
 		String[] from = {"servizio", "username"};

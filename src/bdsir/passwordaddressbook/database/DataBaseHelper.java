@@ -19,7 +19,7 @@ public class DataBaseHelper extends SQLiteOpenHelper
 	{
 		String sql = "";
 		
-		//Creazione della tabella
+		//Creazione della tabella rubrica
 		sql += "CREATE TABLE rubrica";
 		sql += "(";
 		sql += "_id INTEGER PRIMARY KEY,";	//attributo id come chiave primaria
@@ -29,12 +29,21 @@ public class DataBaseHelper extends SQLiteOpenHelper
 		sql += ")";
 		
 		db.execSQL(sql);					//quary al database
+		
+		//Creazione della tabella
+		sql = "CREATE TABLE utente";
+		sql += "(";
+		sql += "_cellulare INTEGER PRIMARY KEY,";
+		sql += "password TEXT NOT NULL";
+		sql += ")";
+		
+		db.execSQL(sql);
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
 	{
-		
+	
 	}
 
 }
