@@ -54,6 +54,7 @@ public class ViewAddressBook extends Activity
 		sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
 		sensorManager.registerListener(prossimita, sensor, SensorManager.SENSOR_DELAY_UI);
 	}
+	
 	protected void onRestart()
 	{
 		super.onRestart();
@@ -161,7 +162,7 @@ public class ViewAddressBook extends Activity
         int[] to = {R.id.textDbServizio, R.id.textDbUsername};
 
         SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), data, R.layout.layout_rubrica, from, to);
-
+        
         viewAddressBok.setAdapter(adapter);
         viewAddressBok.setOnItemClickListener(new RecordClick(this));
         

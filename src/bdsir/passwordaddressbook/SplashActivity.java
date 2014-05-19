@@ -4,6 +4,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import bdsir.passwordaddressbook.database.DataBaseHelper;
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -28,6 +30,15 @@ public class SplashActivity extends Activity
 		dataBaseHelper = new DataBaseHelper(this);
 		setVersionText();
 		animation();
+		
+		
+		//Da eliminare
+		AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
+		Account[] list = manager.getAccountsByType("com.google");
+		for(int i = 0; i < list.length; i++)
+			android.util.Log.v("password", "account google: "+ list[i]);
+		
+		
 	}
 	
 	protected void onPause()

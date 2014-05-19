@@ -16,10 +16,12 @@ public class AccediDialog
 {	
 	private Dialog dialog;
 	private Activity activity;
+	private DataBaseHelper dataBaseHelper;
 	
 	public AccediDialog(Activity activity)
 	{
 		this.activity = activity;
+		dataBaseHelper = new DataBaseHelper(activity.getApplicationContext());
 		
 		dialog = new Dialog(activity);
     	dialog.setTitle("Accedi al Sistema");
@@ -46,12 +48,13 @@ public class AccediDialog
 			{
 				String password = ((EditText) dialog.findViewById(R.id.editAccedi)).getText().toString();
 				
-				SQLiteDatabase db = new DataBaseHelper(activity.getApplicationContext()).getReadableDatabase();
+				SQLiteDatabase db = dataBaseHelper.getReadableDatabase();
 				String query = "SELECT * FROM utente WHERE password = ?";
 				String[] whereArgs = {password};
 				
 				if(db.rawQuery(query, whereArgs).getCount() > 0)
 				{
+					db.close();
 					dialog.dismiss();
 					((ViewAddressBook) activity).showPassword();
 					
@@ -59,7 +62,7 @@ public class AccediDialog
 				}
 				else
 				{
-					dialog.dismiss();
+					db.close();
 					new PersonalDialog(activity, "Errore", "La password inserita non e' corretta", "Indietro");
 					
 					activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);

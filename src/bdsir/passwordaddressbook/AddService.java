@@ -38,9 +38,6 @@ public class AddService extends Activity
 		String username = ((EditText) findViewById(R.id.editUsername)).getText().toString();
 		String password = ((EditText) findViewById(R.id.editPassword)).getText().toString();
 		
-		//primo carattere della stringa 'Tpo Servizio' maiuscolo
-		servizio = ((String) servizio.subSequence(0, 1)).toUpperCase() + "" + servizio.substring(1);
-		
 		if(servizio.isEmpty())
 		{
 			new PersonalDialog(this, "ATTENZIONE", "Il campo \"Tipo Servio\" e' vuoto!\nInserisci un servizio.", "Indietro");
@@ -55,6 +52,9 @@ public class AddService extends Activity
 		}
 		else
 		{
+			//primo carattere della stringa 'Tpo Servizio' maiuscolo
+			servizio = ((String) servizio.subSequence(0, 1)).toUpperCase() + "" + servizio.substring(1);
+			
 			SQLiteDatabase db;
 			
 			db = dataBase.getReadableDatabase();
