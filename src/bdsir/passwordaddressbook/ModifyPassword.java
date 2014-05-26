@@ -5,9 +5,11 @@ import bdsir.passwordaddressbook.dialog.PersonalDialog;
 import bdsir.passwordaddressbook.listener.CloseActivity;
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -19,15 +21,57 @@ public class ModifyPassword extends Activity
 	private DataBaseHelper dataBaseHelper;
 	private String servizio;
 	private String username;
+	private PowerManager pm;
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_modifica_password);
+		pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
 		
 		setListener();
 		setModifyParameter();
+	}
+	
+	protected void onRestart()
+	{
+		super.onRestart();
+		ViewAddressBook.stateShowPassword = false;
+		finish();
+	}
+	
+	protected void onPause()
+	{
+		super.onPause();
+		if(!pm.isScreenOn())
+		{
+			ListModifyPassword.activityListModificyPassword = false;
+			ViewAddressBook.stateShowPassword = false;
+			finish();
+		}
+	}
+	
+	protected void onStop()
+	{
+		super.onStop();
+		if(!pm.isScreenOn())
+		{
+			ListModifyPassword.activityListModificyPassword = false;
+			ViewAddressBook.stateShowPassword = false;
+			finish();
+		}
+	}
+
+	protected void onDestroy()
+	{
+		super.onDestroy();
+		if(!pm.isScreenOn())
+		{
+			ListModifyPassword.activityListModificyPassword = false;
+			ViewAddressBook.stateShowPassword = false;
+			finish();
+		}
 	}
 	
 	private void setListener()
@@ -48,9 +92,9 @@ public class ModifyPassword extends Activity
 	
 	public void procedi(View view)
 	{
-		String editPaswword = ((EditText) findViewById(R.id.editModifyPassword)).getText().toString().trim();
+		String editPassword = ((EditText) findViewById(R.id.editModifyPassword)).getText().toString().trim();
 		
-		if(editPaswword.isEmpty())
+		if(editPassword.isEmpty())
 			new PersonalDialog(this, "ATTENZIONE", "Il campo \"Password\" non puo' essere vuoto." , "Indietro");
 		else
 		{
@@ -61,18 +105,18 @@ public class ModifyPassword extends Activity
 			String[] whereArgs = {servizio, username};
 			
 			ContentValues values = new ContentValues();
-			values.put("password", editPaswword);
+			
+			/*
+			 * Criptare password
+			 */
+			values.put("password", editPassword);
 			
 			if(db.update("rubrica", values, whereClause, whereArgs) < 0)
-			{
-				db.close();
 				new PersonalDialog(this, "ERRORE", "Si e' verificato un errore nel caricare i dati nel DataBase.", "Chiudi");
-			}
 			else
-			{
-				db.close();
 				new PersonalDialog(this, "DATI SALVATI", "I dati inseriti sono stati salvati nel database.", "Chiudi");
-			}
+			
+			db.close();
 		}
 	}
 

@@ -38,7 +38,7 @@ public class SendSMSDialog
 	    	dialog.setContentView(R.layout.dialog_recupero_password);
 	    	
 			SmsManager manager = SmsManager.getDefault();
-			manager.sendTextMessage("" + number, null, "La password di Rubrica Password e' " + password + ".", null, null);
+			manager.sendTextMessage("" + number, null, "RUBRICA PASSWORD: la password da lei richiesta e': '" + password + "'.", null, null);
 			
 			TextView textView = (TextView) dialog.findViewById(R.id.textDescriptionRecupero);
 			String txt = textView.getText().toString();

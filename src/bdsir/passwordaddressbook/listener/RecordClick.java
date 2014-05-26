@@ -2,7 +2,7 @@ package bdsir.passwordaddressbook.listener;
 
 import bdsir.passwordaddressbook.R;
 import bdsir.passwordaddressbook.ViewAddressBook;
-import bdsir.passwordaddressbook.dialog.PersonalDialog;
+import bdsir.passwordaddressbook.dialog.AccediDialog;
 import bdsir.passwordaddressbook.tools.ModifyRecord;
 import bdsir.passwordaddressbook.tools.RemoveRecord;
 import android.view.MenuInflater;
@@ -22,7 +22,7 @@ public class RecordClick implements OnItemClickListener
 	}
 	
 	public void onItemClick(AdapterView<?> adapter, View view, int pos, long id)
-	{
+	{	
 		final View itemView = view;
 		PopupMenu popup = new PopupMenu(rubrica, view);
 	    MenuInflater inflater = popup.getMenuInflater(); 
@@ -45,7 +45,7 @@ public class RecordClick implements OnItemClickListener
 					}
 				}
 				else
-					new PersonalDialog(rubrica, "Attenzione", "Devi prima effettuare l'accesso al sistema!", "Indietro");
+					new AccediDialog(rubrica, "" + item.getItemId(), itemView);
 				
 				return false;
 			}

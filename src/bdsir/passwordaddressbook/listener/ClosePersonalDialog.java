@@ -1,7 +1,9 @@
 package bdsir.passwordaddressbook.listener;
 
+import bdsir.passwordaddressbook.ListModifyPassword;
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 
 public class ClosePersonalDialog implements OnClickListener
@@ -17,6 +19,8 @@ public class ClosePersonalDialog implements OnClickListener
 	{
 		dialog.dismiss();
 		activity.finish();
+		if(ListModifyPassword.activityListModificyPassword)
+			activity.startActivity(new Intent(activity.getApplicationContext(), ListModifyPassword.class));
 	}
 	
 }

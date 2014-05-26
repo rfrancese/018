@@ -6,6 +6,6 @@
     
     <dimen name="heightTopAppName">50dp</dimen>
     <dimen name="infoTextSize">25dp</dimen>
-    <dimen name="normalTextSize">16dp</dimen>
+    <dimen name="normalTextSize">18dp</dimen>
 
 </resources>

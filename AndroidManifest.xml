@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="bdsir.passwordaddressbook"
     android:versionCode="1"
-    android:versionName="1.8" >
+    android:versionName="1.10" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SEND_SMS" />
@@ -23,7 +23,7 @@
 <!--    Splash Screen dell'applicazione	 -->
         <activity 
             android:name=".SplashActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,14 +35,14 @@
         <activity 
             android:name=".FirstAccessAddressBook" 
             android:windowSoftInputMode="stateHidden" >
-
+            
             <intent-filter />
         </activity>
         
 <!--    Visualizza la rubrica delle password	-->
         <activity 
             android:name=".ViewAddressBook"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="adjustPan" >
             
             <intent-filter />
         </activity>

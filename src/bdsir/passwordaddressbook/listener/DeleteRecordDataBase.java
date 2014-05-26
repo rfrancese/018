@@ -1,5 +1,7 @@
 package bdsir.passwordaddressbook.listener;
 
+import bdsir.passwordaddressbook.ListRemoveService;
+import bdsir.passwordaddressbook.ViewAddressBook;
 import bdsir.passwordaddressbook.database.DataBaseHelper;
 import bdsir.passwordaddressbook.dialog.PersonalDialog;
 import android.app.Activity;
@@ -30,7 +32,11 @@ public class DeleteRecordDataBase implements OnClickListener
 		{
 			db.close();
 			new PersonalDialog(activity, "Elimina Servizio", "Eliminazione avvenuta con successo.", "Indietro");
-			activity.recreate();
+			
+			if(activity.getClass().getName().equals(ViewAddressBook.class.getName()))
+				((ViewAddressBook) activity).loadDatabase();
+			else
+				((ListRemoveService) activity).loadService();
 		}
 		else
 		{

@@ -8,7 +8,6 @@ import bdsir.passwordaddressbook.R;
 import bdsir.passwordaddressbook.ViewAddressBook;
 import bdsir.passwordaddressbook.dialog.AccediDialog;
 import bdsir.passwordaddressbook.dialog.ModificaPasswordDialog;
-import bdsir.passwordaddressbook.dialog.PersonalDialog;
 import bdsir.passwordaddressbook.dialog.SendSMSDialog;
 
 public class MenuItemId
@@ -17,9 +16,6 @@ public class MenuItemId
 	{
 		switch(item.getItemId())
 		{
-			case R.id.subMenuLogin:
-				new AccediDialog(rubrica);
-				return true;
 			case R.id.subMenuRecupera:
 				new SendSMSDialog(rubrica);
 	        	return true;
@@ -46,7 +42,7 @@ public class MenuItemId
 		    }
 		}
 		else
-			new PersonalDialog(rubrica, "Attenzione", "Devi prima effettuare l'accesso al sistema!", "Indietro");
+			new AccediDialog(rubrica, "" + item.getItemId(), null);
 		
 	    return false;
 	}

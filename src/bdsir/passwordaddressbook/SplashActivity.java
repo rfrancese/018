@@ -37,8 +37,6 @@ public class SplashActivity extends Activity
 		Account[] list = manager.getAccountsByType("com.google");
 		for(int i = 0; i < list.length; i++)
 			android.util.Log.v("password", "account google: "+ list[i]);
-		
-		
 	}
 	
 	protected void onPause()
@@ -89,7 +87,7 @@ public class SplashActivity extends Activity
 		};
 		
 		timer = new Timer();
-		timer.schedule(task, 2500);
+		timer.schedule(task, 1500);
 	}
 	
 	private void setVersionText()

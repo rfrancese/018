@@ -7,9 +7,11 @@ import bdsir.passwordaddressbook.database.DataBaseHelper;
 import bdsir.passwordaddressbook.listener.ListItemElimina;
 import bdsir.passwordaddressbook.tools.EmptyControllRecord;
 import android.app.Activity;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -17,14 +19,16 @@ import android.widget.SimpleAdapter;
 
 public class ListRemoveService extends Activity
 {
+	private PowerManager pm;
 	private DataBaseHelper databseHelper;
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.activity_list_elimina_servizio);
+		setContentView(R.layout.activity_list_rimuovi_servizio);
 		
+		pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
 		databseHelper = new DataBaseHelper(this);
 		loadService();
 	}
@@ -32,22 +36,41 @@ public class ListRemoveService extends Activity
 	protected void onRestart()
 	{
 		super.onRestart();
-		loadService();
+		ViewAddressBook.stateShowPassword = false;
+		finish();
 	}
-	
-	protected void onResume()
-	{
-		super.onResume();
-		loadService();
-	}
-	
+		
 	protected void onPause()
-    {
-        super.onPause();
-        loadService();
-    }
+	{
+		super.onPause();
+		if(!pm.isScreenOn())
+		{
+			ViewAddressBook.stateShowPassword = false;
+			finish();
+		}
+	}
 	
-	private void loadService()
+	protected void onStop()
+	{
+		super.onStop();
+		if(!pm.isScreenOn())
+		{
+			ViewAddressBook.stateShowPassword = false;
+			finish();
+		}
+	}
+
+	protected void onDestroy()
+	{
+		super.onDestroy();
+		if(!pm.isScreenOn())
+		{
+			ViewAddressBook.stateShowPassword = false;
+			finish();
+		}
+	}
+	
+	public void loadService()
 	{
 		SQLiteDatabase db = databseHelper.getReadableDatabase();
 		String[] columns = {"servizio", "username"};

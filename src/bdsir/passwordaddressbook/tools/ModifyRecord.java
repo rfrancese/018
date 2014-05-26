@@ -10,11 +10,12 @@ public class ModifyRecord
 {
 	public static void modifyRecord(Activity activity, View view, int idService, int idUsername)
 	{
-		Intent modifyService = new Intent(activity.getApplicationContext(), ModifyPassword.class);
+		Intent modifyPassword = new Intent(activity.getApplicationContext(), ModifyPassword.class);
 
-		modifyService.putExtra("servizio", ((TextView) view.findViewById(idService)).getText().toString());
-		modifyService.putExtra("username", ((TextView) view.findViewById(idUsername)).getText().toString());
+		modifyPassword.putExtra("servizio", ((TextView) view.findViewById(idService)).getText().toString());
+		modifyPassword.putExtra("username", ((TextView) view.findViewById(idUsername)).getText().toString());
 		
-		activity.startActivity(modifyService);
+		activity.startActivity(modifyPassword);
+		activity.finish();
 	}
 }

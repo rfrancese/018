@@ -5,8 +5,10 @@ import bdsir.passwordaddressbook.dialog.PersonalDialog;
 import bdsir.passwordaddressbook.listener.CloseActivity;
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -14,18 +16,55 @@ import android.widget.EditText;
 
 public class AddService extends Activity
 {
-	private DataBaseHelper dataBase;
+	private PowerManager pm;
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_aggiungi_servizio);
-		dataBase = new DataBaseHelper(this);
 		
+		pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
 		setListener();
 	}
+	
+	protected void onRestart()
+	{
+		super.onRestart();
+		ViewAddressBook.stateShowPassword = false;
+		finish();
+	}
+	
+	protected void onPause()
+	{
+		super.onPause();
+		if(!pm.isScreenOn())
+		{
+			ViewAddressBook.stateShowPassword = false;
+			finish();
+		}
+	}
+	
+	protected void onStop()
+	{
+		super.onStop();
+		if(!pm.isScreenOn())
+		{
+			ViewAddressBook.stateShowPassword = false;
+			finish();
+		}
+	}
 
+	protected void onDestroy()
+	{
+		super.onDestroy();
+		if(!pm.isScreenOn())
+		{
+			ViewAddressBook.stateShowPassword = false;
+			finish();
+		}
+	}
+	
 	private void setListener()
 	{
 		Button annulla = (Button) findViewById(R.id.buttAnnula);
@@ -34,6 +73,8 @@ public class AddService extends Activity
 	
 	public void procedi(View view)
 	{
+		DataBaseHelper dataBase = new DataBaseHelper(this); 
+		
 		String servizio = ((EditText) findViewById(R.id.editServiceType)).getText().toString();
 		String username = ((EditText) findViewById(R.id.editUsername)).getText().toString();
 		String password = ((EditText) findViewById(R.id.editPassword)).getText().toString();
@@ -52,7 +93,7 @@ public class AddService extends Activity
 		}
 		else
 		{
-			//primo carattere della stringa 'Tpo Servizio' maiuscolo
+			//primo carattere della stringa 'Tipo Servizio' maiuscolo
 			servizio = ((String) servizio.subSequence(0, 1)).toUpperCase() + "" + servizio.substring(1);
 			
 			SQLiteDatabase db;

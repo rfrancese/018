@@ -19,9 +19,8 @@
     <string name="visualizzaPassword">Password:</string>
     
 <!--    Sub Menu Rubrica Password	-->
-    <string name="subMenuLogin">Accedi al sistema</string>
     <string name="subMenuModifica">Modifica Password</string>
-    <string name="subMenuElimina">Elimina Servizio</string>
+    <string name="subMenuElimina">Rimuovi Servizio</string>
     <string name="subMenuPassSistema">Modifica Password Sistema</string>
     <string name="subMenuRecupera">Recupero Password Sistema</string>
     <string name="subMenuBackUp">Back-Up!</string>
@@ -35,7 +34,7 @@
     <string name="esNomeUtente">(es. Mario Rossi, r.mario@live.it)</string>
     <string name="password">Password</string>
     <string name="esPassword">(es. La password del servizio)</string>
-    <string name="hintText">Cliacca qui&#8230;</string>
+    <string name="hintText">Clicca qui&#8230;</string>
     
 <!--     Popup Menu -->
 	<string name="popupModifica">Modifica</string>
@@ -53,6 +52,9 @@
     <string name="ok">OK!</string>
 	<string name="recuperoPasswordDescription">E\' stato inviato un SMS contenente la password del sistema al numero</string>
     
+	<string name="servizio">Servizio:</string>
+	<string name="login">Login</string>
+	<string name="logout">Logout</string>
     <string name="annulla">Annulla</string>
     <string name="procedi">Procedi</string>
     <string name="hidePassword">**********</string>
