@@ -68,11 +68,12 @@ public class ViewAddressBook extends Activity
         	hidePassword();
     }
     
-	protected void onRestart()
+	protected void onResume()
 	{
-		super.onRestart();
+		super.onResume();
 		loadDatabase();
 		activityForeground = true;
+		ListModifyPassword.activityListModificyPassword = false;
 	}
     
     protected void onDestroy()

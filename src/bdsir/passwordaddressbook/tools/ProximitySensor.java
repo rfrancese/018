@@ -27,7 +27,6 @@ public class ProximitySensor implements SensorEventListener
 	{
 		SensorManager sensorManager = (SensorManager) addressBook.getSystemService(Context.SENSOR_SERVICE);
 		Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-		ViewAddressBook.stateShowPassword = true;
 		
 		sensorManager.registerListener(ViewAddressBook.sensorListener, sensor, SensorManager.SENSOR_DELAY_UI);
 	}

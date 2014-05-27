@@ -4,10 +4,10 @@ import android.content.Intent;
 import android.view.MenuItem;
 import bdsir.passwordaddressbook.ListModifyPassword;
 import bdsir.passwordaddressbook.ListRemoveService;
+import bdsir.passwordaddressbook.ModifyPasswordSystem;
 import bdsir.passwordaddressbook.R;
 import bdsir.passwordaddressbook.ViewAddressBook;
 import bdsir.passwordaddressbook.dialog.AccediDialog;
-import bdsir.passwordaddressbook.dialog.ModificaPasswordDialog;
 import bdsir.passwordaddressbook.dialog.SendSMSDialog;
 
 public class MenuItemId
@@ -26,6 +26,8 @@ public class MenuItemId
 		
 		if(ViewAddressBook.stateShowPassword)
 		{
+			ViewAddressBook.activityForeground = false;
+			
 			switch(item.getItemId())
 		    {
 		        case R.id.subMenuModifica:
@@ -35,7 +37,7 @@ public class MenuItemId
 		        	rubrica.startActivity(new Intent(rubrica.getApplicationContext(), ListRemoveService.class));
 		        	return true;
 		        case R.id.subMenuPassSistema:
-		        	new ModificaPasswordDialog(rubrica);
+		        	rubrica.startActivity(new Intent(rubrica.getApplicationContext(), ModifyPasswordSystem.class));
 		        	return true;
 		        case R.id.subMenuBackUp:
 		        	return true;

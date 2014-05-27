@@ -11,6 +11,7 @@ import android.widget.EditText;
 import bdsir.passwordaddressbook.AddService;
 import bdsir.passwordaddressbook.ListModifyPassword;
 import bdsir.passwordaddressbook.ListRemoveService;
+import bdsir.passwordaddressbook.ModifyPasswordSystem;
 import bdsir.passwordaddressbook.R;
 import bdsir.passwordaddressbook.ViewAddressBook;
 import bdsir.passwordaddressbook.database.DataBaseHelper;
@@ -84,7 +85,7 @@ public class AccediDialog
 						else if(type.equals("" + R.id.subMenuElimina))
 							rubrica.startActivity(new Intent(rubrica.getApplicationContext(), ListRemoveService.class));
 						else if(type.equals("" + R.id.subMenuPassSistema))
-							new ModificaPasswordDialog(rubrica);
+							rubrica.startActivity(new Intent(rubrica.getApplicationContext(), ModifyPasswordSystem.class));
 						else if(type.equals("" + R.id.subMenuBackUp))
 							;
 					}

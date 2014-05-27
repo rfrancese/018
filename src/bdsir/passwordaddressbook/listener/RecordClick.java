@@ -33,6 +33,8 @@ public class RecordClick implements OnItemClickListener
 			{
 				if(ViewAddressBook.stateShowPassword)
 				{
+					ViewAddressBook.activityForeground = false;
+					
 					switch (item.getItemId())
 					{
 						case R.id.popupModifica:

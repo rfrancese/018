@@ -19,8 +19,10 @@ public class PersonalDialog
 			alert.setPositiveButton(textButton, new BackPersonalDialog());
 		else if(textButton.equals("Chiudi"))
 			alert.setPositiveButton(textButton, new ClosePersonalDialog(activity));
-		else if(textButton.endsWith("Rubrica"))
+		else if(textButton.equals("Rubrica"))
 			alert.setPositiveButton(textButton, new RubricaPersonalDialog(activity));
+		else if(textButton.equals("OK!"))
+			alert.setPositiveButton(textButton, new OkPersonalDialog(activity));
 		
 		alert.create();
 		alert.show();

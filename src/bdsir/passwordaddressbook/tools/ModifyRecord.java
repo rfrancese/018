@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 import bdsir.passwordaddressbook.ModifyPassword;
+import bdsir.passwordaddressbook.ViewAddressBook;
 
 public class ModifyRecord
 {
@@ -16,6 +17,8 @@ public class ModifyRecord
 		modifyPassword.putExtra("username", ((TextView) view.findViewById(idUsername)).getText().toString());
 		
 		activity.startActivity(modifyPassword);
-		activity.finish();
+		
+		if(!activity.getClass().getName().equals(ViewAddressBook.class.getName()))
+			activity.finish();
 	}
 }
