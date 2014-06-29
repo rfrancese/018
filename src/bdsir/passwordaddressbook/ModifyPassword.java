@@ -1,8 +1,10 @@
 package bdsir.passwordaddressbook;
 
 import bdsir.passwordaddressbook.database.DataBaseHelper;
+import bdsir.passwordaddressbook.dialog.ErrorAlert;
 import bdsir.passwordaddressbook.dialog.PersonalDialog;
 import bdsir.passwordaddressbook.listener.CloseActivity;
+import bdsir.passwordaddressbook.tools.CriptPassword;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
@@ -92,31 +94,35 @@ public class ModifyPassword extends Activity
 	
 	public void procedi(View view)
 	{
-		String editPassword = ((EditText) findViewById(R.id.editModifyPassword)).getText().toString().trim();
-		
-		if(editPassword.isEmpty())
-			new PersonalDialog(this, "ATTENZIONE", "Il campo \"Password\" non puo' essere vuoto." , "Indietro");
-		else
+		try
 		{
-			dataBaseHelper = new DataBaseHelper(this);
-			SQLiteDatabase db = dataBaseHelper.getWritableDatabase();
-		
-			String whereClause = "servizio = ? AND username = ?";
-			String[] whereArgs = {servizio, username};
+			String editPassword = ((EditText) findViewById(R.id.editModifyPassword)).getText().toString().trim();
 			
-			ContentValues values = new ContentValues();
-			
-			/*
-			 * Criptare password
-			 */
-			values.put("password", editPassword);
-			
-			if(db.update("rubrica", values, whereClause, whereArgs) < 0)
-				new PersonalDialog(this, "ERRORE", "Si e' verificato un errore nel caricare i dati nel DataBase.", "Chiudi");
+			if(editPassword.isEmpty())
+				new PersonalDialog(this, "ATTENZIONE", "Il campo \"Password\" non puo' essere vuoto." , "Indietro");
 			else
-				new PersonalDialog(this, "DATI SALVATI", "I dati inseriti sono stati salvati nel database.", "Chiudi");
+			{
+				dataBaseHelper = new DataBaseHelper(this);
+				SQLiteDatabase db = dataBaseHelper.getWritableDatabase();
 			
-			db.close();
+				String whereClause = "servizio = ? AND username = ?";
+				String[] whereArgs = {servizio, CriptPassword.encrypt(username)};
+				
+				ContentValues values = new ContentValues();
+	
+				values.put("password", CriptPassword.encrypt(editPassword));
+				
+				if(db.update("rubrica", values, whereClause, whereArgs) < 0)
+					new PersonalDialog(this, "ERRORE", "Si e' verificato un errore nel caricare i dati nel DataBase.", "Chiudi");
+				else
+					new PersonalDialog(this, "DATI SALVATI", "I dati inseriti sono stati salvati nel database.", "Chiudi");
+				
+				db.close();
+			}
+		}
+		catch(Exception ex)
+		{
+			new ErrorAlert(this);
 		}
 	}
 

@@ -4,10 +4,11 @@ import bdsir.passwordaddressbook.ListRemoveService;
 import bdsir.passwordaddressbook.ViewAddressBook;
 import bdsir.passwordaddressbook.database.DataBaseHelper;
 import bdsir.passwordaddressbook.dialog.PersonalDialog;
+import bdsir.passwordaddressbook.dialog.RemoveDialog;
 import android.app.Activity;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.database.sqlite.SQLiteDatabase;
+import android.view.View;
+import android.view.View.OnClickListener;
 
 public class DeleteRecordDataBase implements OnClickListener
 {
@@ -22,27 +23,23 @@ public class DeleteRecordDataBase implements OnClickListener
 		this.username = username;
 	}
 	
-	public void onClick(DialogInterface dialog, int which)
+	public void onClick(View view)
 	{
-		DataBaseHelper dataBaseHelper = new DataBaseHelper(activity);
+		DataBaseHelper dataBaseHelper = ViewAddressBook.databaseHelper;
 		SQLiteDatabase db = dataBaseHelper.getWritableDatabase();
 		String whereClause = "servizio = ? AND username = ?";
 		String whereArgs[] = {servizio, username};
 		if(db.delete("rubrica", whereClause, whereArgs) > 0)
 		{
-			db.close();
-			new PersonalDialog(activity, "Elimina Servizio", "Eliminazione avvenuta con successo.", "Indietro");
+			new PersonalDialog(activity, "Elimina Servizio", "Eliminazione avvenuta con successo.", "OK!");
 			
-			if(activity.getClass().getName().equals(ViewAddressBook.class.getName()))
-				((ViewAddressBook) activity).loadDatabase();
-			else
+			if(!activity.getClass().getName().equals(RemoveDialog.class.getName()))
 				((ListRemoveService) activity).loadService();
 		}
 		else
-		{
-			db.close();
-			new PersonalDialog(activity, "Errore", "Si e' verificato un errore nella cancellazione del servizio.", "Chiudi");
-		}
+			new PersonalDialog(activity, "Errore", "Si e' verificato un errore nella cancellazione dell'account.", "Chiudi");
+		
+		db.close();
 	}
 
 }

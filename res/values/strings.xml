@@ -5,14 +5,14 @@
 <!--	Activity Primo Accesso	-->
 	<string name="firstAccess">Primo Accesso</string>
     <string name="help1">
-        Per iniziare devi inserire una password che ti permetterà di visualizzare le credenziali dei tuoi servizi preferiti.
+        Per iniziare inserisci una password. Questa password ti permetterà di controllare l\'intera Rubrica e ti servirà per visualizzare le password degli account che memorizzerai.
    	</string>
     <string name="help2">
-        Non aver paura di dimenticare questa password, potrai sempre recuperarla via SMS cliccando sul pulsante "Recupera Password"
+        Non aver paura di dimenticare questa password, potrai sempre recuperarla via SMS cliccando sul pulsante \"Recupera Password Sistema\".
     </string>
+    <string name="inserisciNumCell">Inserisci il tuo numero di cellulare</string>
     <string name="inserisciPassword">Inserisci Password</string>
     <string name="reinserisciPassword">Reinserisci Password</string>
-    <string name="inserisciNumCell">Inserisci il tuo numero di cellulare</string>
     
 <!--	Activity Rubrica Password	-->
     <string name="visualizzaNomeUtente">Username:</string>
@@ -20,20 +20,21 @@
     
 <!--    Sub Menu Rubrica Password	-->
     <string name="subMenuModifica">Modifica Password</string>
-    <string name="subMenuElimina">Rimuovi Servizio</string>
+    <string name="subMenuElimina">Rimuovi Account</string>
     <string name="subMenuPassSistema">Modifica Password Sistema</string>
     <string name="subMenuRecupera">Recupero Password Sistema</string>
     <string name="subMenuBackUp">Back-Up!</string>
+    <string name="subMenuRipristina">Ripristina</string>
     <string name="subMenuExit">Esci</string>
 
 <!--	Activity Aggiungi Servizio -->
-    <string name="addService">Aggiungi Servizio</string>
-    <string name="tipoServizio">Tipo Servizio</string>
-    <string name="esTipoServizio">(es. Hotmail, Facebook, Visa)</string>
-    <string name="nomeUtente">Nome Utente</string>
-    <string name="esNomeUtente">(es. Mario Rossi, r.mario@live.it)</string>
+    <string name="addService">Aggiungi Account</string>
+    <string name="tipoServizio">Quale account desideri memorizzare?</string>
+    <string name="esTipoServizio">esempio: Gmail, Facebook, Postepay</string>
+    <string name="nomeUtente">Username/Email</string>
+    <string name="esNomeUtente">esempio: r.mario@live.it, MarioRossi</string>
     <string name="password">Password</string>
-    <string name="esPassword">(es. La password del servizio)</string>
+    <string name="esPassword">esempio: la password dell\'account</string>
     <string name="hintText">Clicca qui&#8230;</string>
     
 <!--     Popup Menu -->
@@ -54,12 +55,21 @@
     
 	<string name="servizio">Servizio:</string>
 	<string name="login">Login</string>
-	<string name="logout">Logout</string>
     <string name="annulla">Annulla</string>
     <string name="procedi">Procedi</string>
+    <string name="account">Account</string>
     <string name="hidePassword">**********</string>
     <string name="textView">Text View</string>
+    <string name="backup">BackUp!</string>
+    <string name="backUpRipristino">BackUp/Ripristino</string>
     <string name="imgEmpty">Immagine non trovata</string>
-    <string name="msgEliminaDialog">Sei sicuro di voler eliminare il servizio?</string>
+    <string name="textEmpty">Nessun servizio corrispondente trovato.</string>
+    <string name="msgEliminaDialog">Sei sicuro di voler eliminare l\'account?</string>
+    <string name="msgAttendi">Attendi &#8230;</string>
+    <string name="msgBackupDatiInviati">Dati inviati &#8230;</string>
+    <string name="msgRipristinoDatiInviati">Dati ricevuti &#8230;</string>
+    <string name="msgBackUpErrore">Errore: BackUp non eseguito!</string>
+    <string name="msgRipristinoConfirm">Ripristino eseguito correttamente!</string>
+    <string name="restore">Ripristino</string>
     
 </resources>

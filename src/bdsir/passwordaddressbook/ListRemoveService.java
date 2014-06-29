@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import bdsir.passwordaddressbook.database.DataBaseHelper;
+import bdsir.passwordaddressbook.dialog.ErrorAlert;
 import bdsir.passwordaddressbook.listener.ListItemElimina;
+import bdsir.passwordaddressbook.tools.CriptPassword;
 import bdsir.passwordaddressbook.tools.EmptyControllRecord;
 import android.app.Activity;
 import android.content.Context;
@@ -39,6 +41,12 @@ public class ListRemoveService extends Activity
 		ViewAddressBook.stateShowPassword = false;
 		finish();
 	}
+	
+	protected void onResume()
+	{
+		super.onResume();
+		loadService();
+	}
 		
 	protected void onPause()
 	{
@@ -72,36 +80,43 @@ public class ListRemoveService extends Activity
 	
 	public void loadService()
 	{
-		SQLiteDatabase db = databseHelper.getReadableDatabase();
-		String[] columns = {"servizio", "username"};
-		String orderBy = "servizio ASC";
-		Cursor cursor = db.query("rubrica", columns, null, null, null, null, orderBy);
-		
-		ArrayList<HashMap<String,Object>> data = new ArrayList<HashMap<String,Object>>();
-		
-		boolean flag = false;
-		while(cursor.moveToNext())
+		try
 		{
-			HashMap<String,Object> serviceMap = new HashMap<String, Object>();
-			serviceMap.put("servizio", cursor.getString(cursor.getColumnIndex("servizio")));
-			serviceMap.put("username", cursor.getString(cursor.getColumnIndex("username")));
+			SQLiteDatabase db = databseHelper.getReadableDatabase();
+			String[] columns = {"servizio", "username"};
+			String orderBy = "servizio ASC";
+			Cursor cursor = db.query("rubrica", columns, null, null, null, null, orderBy);
 			
-			data.add(serviceMap);
+			ArrayList<HashMap<String,Object>> data = new ArrayList<HashMap<String,Object>>();
 			
-			flag = true;
+			boolean flag = false;
+			while(cursor.moveToNext())
+			{
+				HashMap<String,Object> serviceMap = new HashMap<String, Object>();
+				serviceMap.put("servizio", cursor.getString(cursor.getColumnIndex("servizio")));
+				serviceMap.put("username", CriptPassword.decrypt(cursor.getString(cursor.getColumnIndex("username"))));
+				
+				data.add(serviceMap);
+				
+				flag = true;
+			}
+			
+			EmptyControllRecord.controllRecord(flag, (LinearLayout) findViewById(R.id.linearLayoutElimina), R.drawable.empty_password); 
+	
+	        databseHelper.close();
+	        
+			String[] from = {"servizio", "username"};
+	        int[] to = {R.id.modifyTextService, R.id.modifyTextUsername};
+	
+	        SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), data, R.layout.layout_modifica, from, to);
+	
+	        ListView listView = ((ListView) findViewById(R.id.listEliminaPassword));
+	        listView.setAdapter(adapter);
+	        listView.setOnItemClickListener(new ListItemElimina(this));
 		}
-		
-		EmptyControllRecord.controllRecord(flag, (LinearLayout) findViewById(R.id.linearLayoutElimina), R.drawable.empty_password); 
-
-        databseHelper.close();
-        
-		String[] from = {"servizio", "username"};
-        int[] to = {R.id.modifyTextService, R.id.modifyTextUsername};
-
-        SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), data, R.layout.layout_modifica, from, to);
-
-        ListView listView = ((ListView) findViewById(R.id.listEliminaPassword));
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new ListItemElimina(this));
+		catch(Exception e)
+		{
+			new ErrorAlert(this);
+		}
 	}
 }

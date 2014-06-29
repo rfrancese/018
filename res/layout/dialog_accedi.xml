@@ -48,6 +48,7 @@
             android:layout_marginRight="1dp"
             android:layout_weight="1"
             android:background="@drawable/background_button"
+            android:onClick="annulla"
             android:text="@string/annulla" />
 
         <Button
@@ -58,6 +59,7 @@
             android:layout_marginLeft="1dp"
             android:layout_weight="1"
             android:background="@drawable/background_button"
+            android:onClick="procedi"
             android:text="@string/procedi" />
 
     </LinearLayout>

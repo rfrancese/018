@@ -6,11 +6,14 @@ import java.util.HashMap;
 import bdsir.passwordaddressbook.database.DataBaseHelper;
 import bdsir.passwordaddressbook.database.RecordPassword;
 import bdsir.passwordaddressbook.dialog.AccediDialog;
+import bdsir.passwordaddressbook.dialog.ErrorAlert;
 import bdsir.passwordaddressbook.listener.MenuItemClick;
 import bdsir.passwordaddressbook.listener.RecordClick;
 import bdsir.passwordaddressbook.tools.EmptyControllRecord;
 import bdsir.passwordaddressbook.tools.MenuItemId;
 import bdsir.passwordaddressbook.tools.ProximitySensor;
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -23,21 +26,32 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.SearchView;
+import android.widget.SearchView.OnCloseListener;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.SearchView.OnQueryTextListener;
 
-public class ViewAddressBook extends Activity
+public class ViewAddressBook extends Activity implements OnQueryTextListener, OnCloseListener
 {
 	public static boolean stateShowPassword = false;
 	public static boolean activityForeground = true;
 	public static ProximitySensor sensorListener;
-
+	public static ArrayList<RecordPassword> list;
+	
 	private PowerManager pm;
 	private ArrayList<HashMap<String, Object>> data;
 	private ListView listAddressBok;
+	private boolean flag;
+	private SimpleAdapter defalutAdapter;
+	private SQLiteDatabase db;
+	public static DataBaseHelper databaseHelper;
+	
+	private SearchView searchView;
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -49,6 +63,43 @@ public class ViewAddressBook extends Activity
 		pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
 		listAddressBok.setOnItemClickListener(new RecordClick(this));
 		sensorListener = new ProximitySensor(this);
+		
+		setSearchView();
+	}
+	
+	public void setSearchView()
+	{
+		searchView = (SearchView) findViewById(R.id.searchView);
+		searchView.setOnQueryTextListener(this);
+		searchView.setOnCloseListener(this);
+	}
+	
+	@Override
+	public boolean onClose()
+	{
+		listAddressBok.setAdapter(defalutAdapter);
+		return false;
+	}
+
+	@Override
+	public boolean onQueryTextChange(String inputText)
+	{
+		if (!inputText.isEmpty())
+		{
+            displayResults(inputText);
+        }
+		else
+		{
+            listAddressBok.setAdapter(defalutAdapter);
+        }
+		return false;
+	}
+
+	@Override
+	public boolean onQueryTextSubmit(String inputText)
+	{
+		displayResults(inputText);
+		return false;
 	}
 	
 	protected void onPause()
@@ -59,6 +110,10 @@ public class ViewAddressBook extends Activity
 		
 		if(activityForeground)
 			hidePassword();
+		
+		searchView.clearFocus();
+		searchView.setQuery("", false);
+		db.close();
 	}
 	
     protected void onStop()
@@ -74,6 +129,10 @@ public class ViewAddressBook extends Activity
 		loadDatabase();
 		activityForeground = true;
 		ListModifyPassword.activityListModificyPassword = false;
+		
+		AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
+		Account[] list = manager.getAccountsByType("com.google");
+		SplashActivity.account = list[0].name;
 	}
     
     protected void onDestroy()
@@ -107,53 +166,56 @@ public class ViewAddressBook extends Activity
 	
 	public void loadDatabase()
 	{
-		DataBaseHelper databaseHelper = new DataBaseHelper(this);
-		SQLiteDatabase db = databaseHelper.getReadableDatabase();
-		String[] columns = {"servizio", "username", "password"};
-		String orderBy = "servizio ASC";
-		Cursor cursor = db.query("rubrica", columns, null, null, null, null, orderBy);
-		
-		ArrayList<RecordPassword> list = new ArrayList<RecordPassword>();
-		
-		boolean flag = false;
-		while(cursor.moveToNext())
+		try
 		{
-			RecordPassword record = new RecordPassword
-			(
-				cursor.getString(cursor.getColumnIndex("servizio")),
-				cursor.getString(cursor.getColumnIndex("username")),
-				cursor.getString(cursor.getColumnIndex("password"))
-			);
+			databaseHelper = new DataBaseHelper(this);
+			db = databaseHelper.getReadableDatabase();
+			String[] columns = {"servizio", "username", "password"};
+			String orderBy = "servizio ASC";
+			Cursor cursor = db.query("rubrica", columns, null, null, null, null, orderBy);
 			
-			list.add(record);
+			list = new ArrayList<RecordPassword>();
 			
-			flag = true;
+			flag = false;
+			while(cursor.moveToNext())
+			{
+				RecordPassword record = new RecordPassword();
+				record.setServizio(cursor.getString(cursor.getColumnIndex("servizio")));
+				record.setCriptUsername(cursor.getString(cursor.getColumnIndex("username")));
+				record.setCriptPassword(cursor.getString(cursor.getColumnIndex("password")));
+				
+				list.add(record);
+				
+				flag = true;
+			}
+					
+			data = new ArrayList<HashMap<String,Object>>();
+			
+			for(int i = 0; i < list.size(); i++)
+			{
+	            RecordPassword r = list.get(i);
+	
+	            HashMap<String,Object> recordMap = new HashMap<String, Object>();
+	            
+	            recordMap.put("servizio", r.getServizio());
+	            recordMap.put("username", r.getDecriptUsername());
+	            recordMap.put("password", r.getDecriptPassword());
+	            
+	            data.add(recordMap);
+			}
+			
+	        databaseHelper.close();
+	        listAddressBok = (ListView) findViewById(R.id.listRubricaPassword);
+	        
+	        if(!stateShowPassword)
+	        	hidePassword();
+	        else
+	        	showPassword();
 		}
-		
-		EmptyControllRecord.controllRecord(flag, (LinearLayout) findViewById(R.id.linearLayoutRubrica), R.drawable.empty_password_rubrica);
-		
-		data = new ArrayList<HashMap<String,Object>>();
-		
-		for(int i = 0; i < list.size(); i++)
+		catch(Exception e)
 		{
-            RecordPassword r = list.get(i);
-
-            HashMap<String,Object> recordMap = new HashMap<String, Object>();
-            
-            recordMap.put("servizio", r.getServizio());
-            recordMap.put("username", r.getUsername());
-            recordMap.put("password", r.getPassword());
-            
-            data.add(recordMap);
+			new ErrorAlert(this);
 		}
-		
-        databaseHelper.close();
-        listAddressBok = (ListView) findViewById(R.id.listRubricaPassword);
-        
-        if(!stateShowPassword)
-        	hidePassword();
-        else
-        	showPassword();
 	}
 	
 	public void hidePassword()
@@ -161,14 +223,17 @@ public class ViewAddressBook extends Activity
 		String[] from = {"servizio", "username"};
         int[] to = {R.id.textDbServizio, R.id.textDbUsername};
 
-        SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), data, R.layout.layout_rubrica_hide, from, to);
+        defalutAdapter = new SimpleAdapter(getApplicationContext(), data, R.layout.layout_rubrica_hide, from, to);
         
-        listAddressBok.setAdapter(adapter);
+        listAddressBok.setAdapter(defalutAdapter);
         
         stateShowPassword = false;
         
         findViewById(R.id.imgLogSystem).setBackgroundResource(R.drawable.background_logout);
         ((TextView) findViewById(R.id.logSystem)).setText(R.string.login);
+		((Button) findViewById(R.id.logSystem)).setBackgroundResource(R.drawable.background_logout);
+		
+		EmptyControllRecord.controllRecord(flag, (LinearLayout) findViewById(R.id.linearLayoutRubrica), R.drawable.empty_password_rubrica_1);
 	}
 	
 	public void showPassword()
@@ -176,14 +241,17 @@ public class ViewAddressBook extends Activity
 		String[] from = {"servizio", "username", "password"};
         int[] to = {R.id.textDbServizio, R.id.textDbUsername, R.id.textDbPassword};
 
-        SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), data, R.layout.layout_rubrica_show, from, to);
+        defalutAdapter = new SimpleAdapter(getApplicationContext(), data, R.layout.layout_rubrica_show, from, to);
         
-        listAddressBok.setAdapter(adapter);
+        listAddressBok.setAdapter(defalutAdapter);
         
         stateShowPassword = true;
         
         findViewById(R.id.imgLogSystem).setBackgroundResource(R.drawable.background_login);
-        ((TextView) findViewById(R.id.logSystem)).setText(R.string.logout);
+        ((TextView) findViewById(R.id.logSystem)).setText("Nascondi tutto!");
+		((Button) findViewById(R.id.logSystem)).setBackgroundResource(R.drawable.background_login);
+		
+		EmptyControllRecord.controllRecord(flag, (LinearLayout) findViewById(R.id.linearLayoutRubrica), R.drawable.empty_password_rubrica_2);
 	}
 	
 	public void addServizio(View view)
@@ -209,5 +277,95 @@ public class ViewAddressBook extends Activity
 			ProximitySensor.sensorOFF(this);
 			hidePassword();
 		}
+		
+		searchView.clearFocus();
+		searchView.setQuery("", false);
 	}
+	
+	public boolean isEmpty()
+	{
+		return flag;
+	}
+
+	private void displayResults(String inputText)
+	{
+		try
+		{
+			SimpleAdapter adapter;
+			db = databaseHelper.getReadableDatabase();
+	
+	        String query = "SELECT * FROM rubrica WHERE servizio LIKE '" + inputText + "%' ORDER BY servizio ASC;";
+	 
+	        Cursor cursor = db.rawQuery(query, null);
+	        
+	        if(cursor.getCount() != 0)
+	        {
+	        	ArrayList<RecordPassword> listTMP = new ArrayList<RecordPassword>();
+	            ArrayList<HashMap<String, Object>> dataTMP = new ArrayList<HashMap<String,Object>>();
+	
+	        	cursor.moveToFirst();        
+	
+				do
+				{
+					RecordPassword record = new RecordPassword();
+					
+					record.setServizio(cursor.getString(cursor.getColumnIndex("servizio")));
+					record.setCriptUsername(cursor.getString(cursor.getColumnIndex("username")));
+					record.setCriptPassword(cursor.getString(cursor.getColumnIndex("password")));
+					
+					listTMP.add(record);
+					
+				}
+				while(cursor.moveToNext());
+			
+				for(int i = 0; i < listTMP.size(); i++)
+				{
+		            RecordPassword r = listTMP.get(i);
+		
+		            HashMap<String,Object> recordMap = new HashMap<String, Object>();
+		            
+		            recordMap.put("servizio", r.getServizio());
+		            recordMap.put("username", r.getDecriptUsername());
+		            recordMap.put("password", r.getDecriptPassword());
+		            
+		            dataTMP.add(recordMap);
+				}
+				
+	        	if(stateShowPassword)
+	        	{
+	        		String[] from = {"servizio", "username", "password"};
+	                int[] to = {R.id.textDbServizio, R.id.textDbUsername, R.id.textDbPassword};
+	                adapter = new SimpleAdapter(getApplicationContext(), dataTMP, R.layout.layout_rubrica_show, from, to);
+	        	}
+	        	else
+	        	{
+	        		String[] from = {"servizio", "username"};
+	                int[] to = {R.id.textDbServizio, R.id.textDbUsername};                
+	                adapter = new SimpleAdapter(getApplicationContext(), dataTMP, R.layout.layout_rubrica_hide, from, to);
+	        	}
+	 
+	            listAddressBok.setAdapter(adapter);
+	        }
+	        else
+	        {
+	        	String[] from = {"empty"};
+	        	int[] to = {R.id.textEmpty};
+	        	
+	            ArrayList<HashMap<String, Object>> dataTMP = new ArrayList<HashMap<String,Object>>();
+	            HashMap<String, Object> hashTMP = new HashMap<String, Object>();
+	            
+	            hashTMP.put("empty", getString(R.string.textEmpty));
+	            dataTMP.add(hashTMP);
+	            
+	        	adapter = new SimpleAdapter(getApplicationContext(), dataTMP, R.layout.layout_rubrica_empty, from, to);
+	        	listAddressBok.setAdapter(adapter);
+	        }
+	
+	        db.close();
+		}
+		catch(Exception e)
+		{
+			new ErrorAlert(this);
+		}
+    }
 }

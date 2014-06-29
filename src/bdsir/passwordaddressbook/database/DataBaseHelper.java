@@ -22,19 +22,20 @@ public class DataBaseHelper extends SQLiteOpenHelper
 		//Creazione della tabella rubrica
 		sql += "CREATE TABLE rubrica";
 		sql += "(";
-		sql += "_id INTEGER PRIMARY KEY,";	//attributo id come chiave primaria
-		sql += "servizio TEXT NOT NULL,";	//attributo servizio tipo testo e non null
-		sql += "username TEXT NOT NULL,";	//attributo username tipo testo e non null
-		sql += "password TEXT NOT NULL";	//attributo password tipo testo e non null
+		sql += "_id INTEGER PRIMARY KEY,";			//attributo id come chiave primaria
+		sql += "servizio TEXT NOT NULL,";			//attributo servizio tipo testo e non null
+		sql += "username TEXT NOT NULL,";			//attributo username tipo testo e non null
+		sql += "password VARCHAR(255) NOT NULL";	//attributo password tipo testo e non null
 		sql += ")";
 		
-		db.execSQL(sql);					//quary al database
+		db.execSQL(sql);							//quary al database
 		
 		//Creazione della tabella
 		sql = "CREATE TABLE utente";
 		sql += "(";
-		sql += "_cellulare INTEGER PRIMARY KEY,";
-		sql += "password TEXT NOT NULL";
+		sql += "_id INTEGER PRIMARY KEY,";
+		sql += "cellulare VARCHAR(255) NOT NULL,";
+		sql += "password VARCHAR(255) NOT NULL";
 		sql += ")";
 		
 		db.execSQL(sql);
@@ -42,8 +43,5 @@ public class DataBaseHelper extends SQLiteOpenHelper
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
-	{
-	
-	}
-
+	{	}
 }

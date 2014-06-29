@@ -18,10 +18,22 @@
         android:id="@+id/subMenuRecupera"
         android:title="@string/subMenuRecupera" />
     
-    <item
-        android:id="@+id/subMenuBackUp"
-        android:title="@string/subMenuBackUp" />
-     
+    <item 
+        android:id="@+id/subMenuBackUpRipristino"
+        android:title="@string/backUpRipristino">
+    	
+	    <menu>
+	    	<item
+	        android:id="@+id/subMenuBackUp"
+	        android:title="@string/subMenuBackUp" />
+	    	
+	    	<item
+	        android:id="@+id/subMenuRipristina"
+	        android:title="@string/subMenuRipristina" />
+	    </menu>
+	    
+    </item>
+    
     <item
         android:id="@+id/subMenuExit"
         android:title="@string/subMenuExit" />

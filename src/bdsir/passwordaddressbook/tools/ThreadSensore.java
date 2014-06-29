@@ -18,7 +18,7 @@ public class ThreadSensore implements Runnable
 			while(true)
 			{	
 				Thread.sleep(1500);
-								
+				
 				if(!ViewAddressBook.stateShowPassword)
 				{	
 					ProximitySensor.sensorOFF(addressBook);

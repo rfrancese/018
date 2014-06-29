@@ -2,12 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="bdsir.passwordaddressbook"
     android:versionCode="1"
-    android:versionName="1.12" >
+    android:versionName="1.5.7" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 	<uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> 
     
     <uses-sdk 
         android:minSdkVersion="14"
@@ -67,12 +68,21 @@
 		    <intent-filter />
 		</activity>
 		
-<!-- 	Modifica password di sistema -->
+<!-- 	Dialog Modifica password di sistema -->
 		<activity 
 		    android:name=".ModifyPasswordSystem"
-		    android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
+		    android:theme="@android:style/Theme.Holo.Light.Dialog"
 		    android:windowSoftInputMode="stateHidden"
 		    android:label="@string/subMenuPassSistema" >
+		    
+		    <intent-filter />
+		</activity>
+		
+<!-- 	Dialog Elimina servizio -->
+		<activity 
+		    android:name="bdsir.passwordaddressbook.dialog.RemoveDialog"
+		    android:theme="@android:style/Theme.Holo.Light.Dialog"
+		    android:label="@string/subMenuElimina" >
 		    
 		    <intent-filter />
 		</activity>
@@ -83,5 +93,23 @@
 		    <intent-filter />
 		</activity>    
 	
+<!-- 	BackUp -->
+		<activity 
+		    android:name="bdsir.passwordaddressbook.json.BackupJson"
+		    android:theme="@android:style/Theme.Holo.Light.Dialog"
+		    android:label="@string/backup" >
+		    
+		    <intent-filter />
+		</activity>
+		
+<!-- 	Restore -->
+		<activity 
+		    android:name="bdsir.passwordaddressbook.json.RipristinoJson"
+		    android:theme="@android:style/Theme.Holo.Light.Dialog"
+		    android:label="@string/restore" >
+		    
+		    <intent-filter />
+		</activity>
+		
 	</application>
 </manifest>

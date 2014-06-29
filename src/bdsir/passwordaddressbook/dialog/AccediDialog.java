@@ -15,6 +15,9 @@ import bdsir.passwordaddressbook.ModifyPasswordSystem;
 import bdsir.passwordaddressbook.R;
 import bdsir.passwordaddressbook.ViewAddressBook;
 import bdsir.passwordaddressbook.database.DataBaseHelper;
+import bdsir.passwordaddressbook.json.BackupJson;
+import bdsir.passwordaddressbook.json.RipristinoJson;
+import bdsir.passwordaddressbook.tools.CriptPassword;
 import bdsir.passwordaddressbook.tools.ModifyRecord;
 import bdsir.passwordaddressbook.tools.ProximitySensor;
 import bdsir.passwordaddressbook.tools.RemoveRecord;
@@ -64,46 +67,53 @@ public class AccediDialog
 		{
 			public void onClick(View v)
 			{
-				String password = ((EditText) dialog.findViewById(R.id.editAccedi)).getText().toString();
+				try
+				{
+					String password = CriptPassword.encrypt(((EditText) dialog.findViewById(R.id.editAccedi)).getText().toString());
 				
-				SQLiteDatabase db = dataBaseHelper.getReadableDatabase();
-				String query = "SELECT * FROM utente WHERE password = ?";
-				String[] whereArgs = {password};
-				
-				if(db.rawQuery(query, whereArgs).getCount() > 0)
-				{	
-					if(type != null)
+					SQLiteDatabase db = dataBaseHelper.getReadableDatabase();
+					String query = "SELECT * FROM utente WHERE password = ?";
+					String[] whereArgs = {password};
+					
+					if(db.rawQuery(query, whereArgs).getCount() > 0)
 					{	
-						if(type.equals("addService"))
-							rubrica.startActivity(new Intent(rubrica.getApplicationContext(), AddService.class));
-						else if(type.equals("" + R.id.popupModifica))
-							ModifyRecord.modifyRecord(rubrica, view, R.id.textDbServizio, R.id.textDbUsername);
-						else if(type.equals("" + R.id.popupElimna))
-							RemoveRecord.removeRecord(rubrica, view, R.id.textDbServizio, R.id.textDbUsername);
-						else if(type.equals("" + R.id.subMenuModifica))
-							rubrica.startActivity(new Intent(rubrica.getApplicationContext(), ListModifyPassword.class));
-						else if(type.equals("" + R.id.subMenuElimina))
-							rubrica.startActivity(new Intent(rubrica.getApplicationContext(), ListRemoveService.class));
-						else if(type.equals("" + R.id.subMenuPassSistema))
-							rubrica.startActivity(new Intent(rubrica.getApplicationContext(), ModifyPasswordSystem.class));
-						else if(type.equals("" + R.id.subMenuBackUp))
-							;
+						if(type != null)
+						{	
+							if(type.equals("addService"))
+								rubrica.startActivity(new Intent(rubrica.getApplicationContext(), AddService.class));
+							else if(type.equals("" + R.id.popupModifica))
+								ModifyRecord.modifyRecord(rubrica, view, R.id.textDbServizio, R.id.textDbUsername);
+							else if(type.equals("" + R.id.popupElimna))
+								RemoveRecord.removeRecord(rubrica, view, R.id.textDbServizio, R.id.textDbUsername);
+							else if(type.equals("" + R.id.subMenuModifica))
+								rubrica.startActivity(new Intent(rubrica.getApplicationContext(), ListModifyPassword.class));
+							else if(type.equals("" + R.id.subMenuElimina))
+								rubrica.startActivity(new Intent(rubrica.getApplicationContext(), ListRemoveService.class));
+							else if(type.equals("" + R.id.subMenuPassSistema))
+								rubrica.startActivity(new Intent(rubrica.getApplicationContext(), ModifyPasswordSystem.class));
+							else if(type.equals("" + R.id.subMenuBackUp))
+								rubrica.startActivity(new Intent(rubrica.getApplicationContext(), BackupJson.class));
+							else if(type.equals("" + R.id.subMenuRipristina))
+								rubrica.startActivity(new Intent(rubrica.getApplicationContext(), RipristinoJson.class));
+						}
+						else
+						{
+							rubrica.showPassword();
+							new Thread(new ThreadSensore(rubrica)).start();
+						}
+						
+						dialog.dismiss();
 					}
 					else
-					{
-						rubrica.showPassword();
-						new Thread(new ThreadSensore(rubrica)).start();
-					}
+						new PersonalDialog(rubrica, "Errore", "La password inserita non e' corretta", "Indietro");
 					
-					dialog.dismiss();
+					db.close();
+					rubrica.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 				}
-				else
+				catch(Exception e)
 				{
-					new PersonalDialog(rubrica, "Errore", "La password inserita non e' corretta", "Indietro");
+					new ErrorAlert(rubrica);
 				}
-				
-				db.close();
-				rubrica.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 			}
 		});
 	}

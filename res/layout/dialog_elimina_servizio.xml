@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical" >
+	
+	    <TextView
+	        android:id="@+id/textDialogRemoveServizio"
+	        style="@style/TextViewPersonal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginBottom="5dp"
+	        android:layout_marginLeft="10dp"
+	        android:layout_marginRight="10dp"
+	        android:layout_marginTop="5dp"
+	        android:text="@string/textView"
+	        android:textSize="@dimen/normalTextSize" />
+	
+	    <ImageView
+	        android:layout_width="match_parent"
+	        android:layout_height="5dp"
+	        android:background="@drawable/separatore"
+	        android:contentDescription="@string/imgEmpty"
+	        android:src="@drawable/separatore" />
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:padding="5dp" >
+	
+	        <Button
+	            android:id="@+id/buttAnnulaRemoveDialog"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginRight="1dp"
+	            android:layout_weight="1"
+	            android:background="@drawable/background_button"
+	            android:onClick="annulla"
+	            android:text="@string/annulla" />
+	
+	        <Button
+	            android:id="@+id/buttProcediRemoveDialog"
+	            style="?android:attr/buttonBarButtonStyle"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="1dp"
+	            android:layout_weight="1"
+	            android:background="@drawable/background_button"
+	            android:text="@string/procedi" />
+	    </LinearLayout>
+	
+	</LinearLayout>
+
+</ScrollView>

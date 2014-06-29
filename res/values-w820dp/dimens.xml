@@ -6,5 +6,9 @@
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
     -->
     <dimen name="activity_horizontal_margin">64dp</dimen>
-
+    <dimen name="activity_vertical_margin">64dp</dimen>
+    
+    <dimen name="heightTopAppName">50dp</dimen>
+    <dimen name="infoTextSize">25dp</dimen>
+    <dimen name="normalTextSize">18dp</dimen>
 </resources>

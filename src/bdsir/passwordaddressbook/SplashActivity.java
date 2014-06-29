@@ -21,6 +21,9 @@ public class SplashActivity extends Activity
 	private SQLiteDatabase db;
 	private String query;
 	
+	public static AccountManager manager;
+	public static String account;
+	
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -31,12 +34,9 @@ public class SplashActivity extends Activity
 		setVersionText();
 		animation();
 		
-		
-		//Da eliminare
-		AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
+		manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
 		Account[] list = manager.getAccountsByType("com.google");
-		for(int i = 0; i < list.length; i++)
-			android.util.Log.v("password", "account google: "+ list[i]);
+		account = list[0].name;
 	}
 	
 	protected void onPause()
@@ -69,25 +69,21 @@ public class SplashActivity extends Activity
 		{
 			public void run()
 			{
+				Intent intent = null;
+				
 				if(db.rawQuery(query, null).getCount() > 0)
-				{
-					db.close();
-					Intent viewAddressBook = new Intent(getApplicationContext(), ViewAddressBook.class);
-					startActivity(viewAddressBook);
-					finish();
-				}
+					intent = new Intent(getApplicationContext(), ViewAddressBook.class);
 				else
-				{
-					db.close();
-					Intent firstAccess = new Intent(getApplicationContext(), FirstAccessAddressBook.class);
-					startActivity(firstAccess);
-					finish();
-				}
+					intent = new Intent(getApplicationContext(), FirstAccessAddressBook.class);
+				
+				db.close();
+				startActivity(intent);
+				finish();
 			}
 		};
 		
 		timer = new Timer();
-		timer.schedule(task, 1500);
+		timer.schedule(task, 2000);
 	}
 	
 	private void setVersionText()

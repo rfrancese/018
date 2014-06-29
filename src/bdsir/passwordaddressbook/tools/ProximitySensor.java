@@ -20,7 +20,8 @@ public class ProximitySensor implements SensorEventListener
 
 	public void onSensorChanged(SensorEvent event)
 	{
-		addressBook.hidePassword();
+		if(ViewAddressBook.activityForeground)
+			addressBook.hidePassword();
 	}
 	
 	public static void sensorON(ViewAddressBook addressBook)

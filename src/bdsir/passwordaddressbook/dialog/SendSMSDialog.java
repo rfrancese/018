@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import bdsir.passwordaddressbook.R;
 import bdsir.passwordaddressbook.database.DataBaseHelper;
+import bdsir.passwordaddressbook.tools.CriptPassword;
 
 public class SendSMSDialog
 {
@@ -21,11 +22,21 @@ public class SendSMSDialog
 		DataBaseHelper dataBaseHelper = new DataBaseHelper(activity);
 		SQLiteDatabase db = dataBaseHelper.getReadableDatabase();
 		String query = "SELECT * FROM utente";
+		String number = null;
+		String password = null;
 		
 		Cursor cursor = db.rawQuery(query, null);
 		cursor.moveToNext();
-		String number = cursor.getString(0);
-		String password = cursor.getString(1);
+		try
+		{
+			number = CriptPassword.decrypt(cursor.getString(cursor.getColumnIndex("cellulare")));
+			password = CriptPassword.decrypt(cursor.getString(cursor.getColumnIndex("password")));
+		}
+		catch(Exception e)
+		{
+			new ErrorAlert(activity);
+		}
+		
 		int count = cursor.getCount();
 		db.close();
 		
@@ -44,8 +55,7 @@ public class SendSMSDialog
 			String txt = textView.getText().toString();
 			txt += " " + number;
 			textView.setText(txt);
-			
-			
+					
 	    	dialog.setCancelable(false);
 	    	dialog.show();
 	    	

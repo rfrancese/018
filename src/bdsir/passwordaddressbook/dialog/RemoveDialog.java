@@ -1,24 +1,59 @@
 package bdsir.passwordaddressbook.dialog;
 
-import bdsir.passwordaddressbook.listener.*;
+import bdsir.passwordaddressbook.R;
+import bdsir.passwordaddressbook.ViewAddressBook;
+import bdsir.passwordaddressbook.listener.DeleteRecordDataBase;
+import bdsir.passwordaddressbook.tools.CriptPassword;
 import android.app.Activity;
-import android.app.AlertDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
-public class RemoveDialog
+
+public class RemoveDialog extends Activity
 {
-	private AlertDialog.Builder alert;
+	private String servizio;
+	private String username;
 	
-	public RemoveDialog(Activity activity, String servizio, String username)
+	protected void onCreate(Bundle savedInstanceState)
 	{
-		alert = new AlertDialog.Builder(activity);
-
-		alert.setTitle("Elimina Servizio");
-		alert.setMessage("Sei sicuro di voler eliminare l'account '" + servizio + "' dalla rubrica?");
-		alert.setCancelable(false);
-		alert.setNegativeButton("Annulla", null);
-		alert.setPositiveButton("Elimina", new DeleteRecordDataBase(activity, servizio, username));
-		alert.create();
-		alert.show();
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.dialog_elimina_servizio);
+		
+		setFinishOnTouchOutside(false);
+		
+		Intent intent = getIntent();
+		servizio = intent.getStringExtra("servizio");
+		try
+		{
+			username = CriptPassword.encrypt(intent.getStringExtra("username"));
+		}
+		catch (Exception e)
+		{
+			new ErrorAlert(this);
+		}
+		
+		((TextView) findViewById(R.id.textDialogRemoveServizio)).setText("Sei sicuro di voler eliminare l'account '" + servizio + "' dalla rubrica?");
+		procedi();
+	}
+	
+	protected void onRestart()
+	{
+		super.onRestart();
+		ViewAddressBook.stateShowPassword = false;
+		finish();
+	}
+	
+	public void annulla(View view)
+	{
+		finish();
+	}
+	
+	private void procedi()
+	{
+		((Button) findViewById(R.id.buttProcediRemoveDialog)).setOnClickListener(new DeleteRecordDataBase(this, servizio, username));
 	}
 	
 }

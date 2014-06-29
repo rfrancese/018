@@ -1,6 +1,8 @@
 package bdsir.passwordaddressbook;
 
 import bdsir.passwordaddressbook.database.DataBaseHelper;
+import bdsir.passwordaddressbook.database.RecordPassword;
+import bdsir.passwordaddressbook.dialog.ErrorAlert;
 import bdsir.passwordaddressbook.dialog.PersonalDialog;
 import bdsir.passwordaddressbook.listener.CloseActivity;
 import android.app.Activity;
@@ -75,13 +77,13 @@ public class AddService extends Activity
 	{
 		DataBaseHelper dataBase = new DataBaseHelper(this); 
 		
-		String servizio = ((EditText) findViewById(R.id.editServiceType)).getText().toString();
-		String username = ((EditText) findViewById(R.id.editUsername)).getText().toString();
-		String password = ((EditText) findViewById(R.id.editPassword)).getText().toString();
+		String servizio = ((EditText) findViewById(R.id.editServiceType)).getText().toString().trim();
+		String username = ((EditText) findViewById(R.id.editUsername)).getText().toString().trim();
+		String password = ((EditText) findViewById(R.id.editPassword)).getText().toString().trim();
 		
 		if(servizio.isEmpty())
 		{
-			new PersonalDialog(this, "ATTENZIONE", "Il campo \"Tipo Servio\" e' vuoto!\nInserisci un servizio.", "Indietro");
+			new PersonalDialog(this, "ATTENZIONE", "Il campo \"Nome Account\" e' vuoto!\nInserisci un account.", "Indietro");
 		}
 		else if(username.isEmpty())
 		{
@@ -96,38 +98,45 @@ public class AddService extends Activity
 			//primo carattere della stringa 'Tipo Servizio' maiuscolo
 			servizio = ((String) servizio.subSequence(0, 1)).toUpperCase() + "" + servizio.substring(1);
 			
-			SQLiteDatabase db;
+			SQLiteDatabase db = dataBase.getReadableDatabase();
 			
-			db = dataBase.getReadableDatabase();
 			String query = "SELECT * FROM rubrica WHERE servizio = ? AND username = ?";
-			String selectionArg[] = {servizio.trim(), username.trim()};
+			String selectionArg[] = {servizio, username};
 			
 			if(db.rawQuery(query, selectionArg).getCount() > 0)
 			{
 				db.close();
-				new PersonalDialog(this, "Parametri non validi", "Servizio e Nome Utente gia' presente nel Database.", "Indietro");	
+				new PersonalDialog(this, "Parametri non validi", "Nome Account e Nome Utente gia' presente nel Database.", "Indietro");	
 			}	
 			else
 			{
 				db.close();
 				db = dataBase.getWritableDatabase();
 				ContentValues values = new ContentValues();
+				RecordPassword r = null;
 				
-				values.put("servizio", servizio.trim());
-				values.put("username", username.trim());
-				values.put("password", password);
+				try
+				{
+					r = new RecordPassword(servizio, username, password);
+				}
+				catch (Exception e)
+				{
+					new ErrorAlert(this);
+				}
+				
+				values.put("servizio", r.getServizio());
+				values.put("username", r.getCriptUsername());
+				values.put("password", r.getCriptPassword());
 				
 				if(db.insert("rubrica", null, values) < 0)
 				{
-					db.close();
-					new PersonalDialog(this, "ERRORE", "Si e' verificato un errore nel caricare i dati nel DataBase.", "Chiudi");
+					new PersonalDialog(this, "ERRORE", "Si e' verificato un errore nel salvataggio dei dati.", "Chiudi");
 					finish();
 				}
 				else
-				{
-					db.close();
-					new PersonalDialog(this, "DATI SALVATI", "I dati inseriti sono stati salvati nel database.", "Chiudi");
-				}
+					new PersonalDialog(this, "DATI SALVATI", "I dati inseriti sono stati salvati.", "Chiudi");
+
+				db.close();
 			}
 		}
 	}

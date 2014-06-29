@@ -35,6 +35,7 @@
                 android:background="@drawable/background_list"
                 android:orientation="vertical" >
 
+<!--            Aggiungi un nuovo account da memorizzare  -->
                 <TextView
                     style="@style/TextViewPersonal"
                     android:layout_marginBottom="0dp"
@@ -73,6 +74,7 @@
                 android:background="@drawable/background_list"
                 android:orientation="vertical" >
 
+<!--            Inserisci l'email o username dell'account -->
                 <TextView
                     style="@style/TextViewPersonal"
                     android:layout_marginBottom="0dp"
@@ -107,6 +109,7 @@
                 android:background="@drawable/background_list"
                 android:orientation="vertical" >
 
+<!--            Inserisci la password da memorizzare -->
                 <TextView
                     style="@style/TextViewPersonal"
                     android:layout_marginBottom="0dp"
