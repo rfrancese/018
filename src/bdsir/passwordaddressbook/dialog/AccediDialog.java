@@ -94,7 +94,7 @@ public class AccediDialog
 							else if(type.equals("" + R.id.subMenuBackUp))
 								rubrica.startActivity(new Intent(rubrica.getApplicationContext(), BackupJson.class));
 							else if(type.equals("" + R.id.subMenuRipristina))
-								rubrica.startActivity(new Intent(rubrica.getApplicationContext(), RipristinoJson.class));
+								new WarningBackup(rubrica);
 						}
 						else
 						{

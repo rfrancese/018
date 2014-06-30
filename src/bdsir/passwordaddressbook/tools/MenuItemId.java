@@ -9,6 +9,7 @@ import bdsir.passwordaddressbook.R;
 import bdsir.passwordaddressbook.ViewAddressBook;
 import bdsir.passwordaddressbook.dialog.AccediDialog;
 import bdsir.passwordaddressbook.dialog.SendSMSDialog;
+import bdsir.passwordaddressbook.dialog.WarningBackup;
 import bdsir.passwordaddressbook.json.BackupJson;
 import bdsir.passwordaddressbook.json.RipristinoJson;
 
@@ -47,7 +48,7 @@ public class MenuItemId
 		        	rubrica.startActivity(new Intent(rubrica.getApplicationContext(), BackupJson.class));
 		        	return true;
 		        case R.id.subMenuRipristina:
-		        	rubrica.startActivity(new Intent(rubrica.getApplicationContext(), RipristinoJson.class));
+		        	new WarningBackup(rubrica);
 		        	return true;
 		    }
 		}

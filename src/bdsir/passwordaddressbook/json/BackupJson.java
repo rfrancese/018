@@ -72,6 +72,8 @@ public class BackupJson extends Activity
 				((TextView) findViewById(R.id.backupView)).setText("Errore nel caricamento dati!");
 			else if(result.equals("errno2"))
 				((TextView) findViewById(R.id.backupView)).setText("Errore: BackUp non eseguito!");
+			else if(result.isEmpty())
+				((TextView) findViewById(R.id.backupView)).setText("Problema di connessione. Non e' stato possibiele effettuare il BackUp!");
 			else
 				((TextView) findViewById(R.id.backupView)).setText(result);
 		}

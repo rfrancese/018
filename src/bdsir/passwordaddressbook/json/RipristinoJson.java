@@ -81,6 +81,8 @@ public class RipristinoJson extends Activity
 				((TextView) findViewById(R.id.backupView)).setText("Errore nel caricamento dati!");
 			else if(result.equals("errno2"))
 				((TextView) findViewById(R.id.backupView)).setText("Non hai ancora effettuato un BackUp!");
+			else if(result.isEmpty())
+				((TextView) findViewById(R.id.backupView)).setText("Problema di connessione. Non e' stato possibile effettuare il ripristino!");
 			else
 			{
 				try
