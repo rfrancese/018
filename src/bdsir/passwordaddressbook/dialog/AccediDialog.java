@@ -16,7 +16,6 @@ import bdsir.passwordaddressbook.R;
 import bdsir.passwordaddressbook.ViewAddressBook;
 import bdsir.passwordaddressbook.database.DataBaseHelper;
 import bdsir.passwordaddressbook.json.BackupJson;
-import bdsir.passwordaddressbook.json.RipristinoJson;
 import bdsir.passwordaddressbook.tools.CriptPassword;
 import bdsir.passwordaddressbook.tools.ModifyRecord;
 import bdsir.passwordaddressbook.tools.ProximitySensor;

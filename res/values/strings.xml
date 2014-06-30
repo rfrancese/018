@@ -54,7 +54,7 @@
 	<string name="recuperoPasswordDescription">E\' stato inviato un SMS contenente la password del sistema al numero</string>
     
 	<string name="servizio">Servizio:</string>
-	<string name="login">Login</string>
+	<string name="login">Mostra tutto!</string>
     <string name="annulla">Annulla</string>
     <string name="procedi">Procedi</string>
     <string name="account">Account</string>

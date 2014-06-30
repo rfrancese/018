@@ -11,7 +11,6 @@ import bdsir.passwordaddressbook.dialog.AccediDialog;
 import bdsir.passwordaddressbook.dialog.SendSMSDialog;
 import bdsir.passwordaddressbook.dialog.WarningBackup;
 import bdsir.passwordaddressbook.json.BackupJson;
-import bdsir.passwordaddressbook.json.RipristinoJson;
 
 public class MenuItemId
 {
