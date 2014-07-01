@@ -42,7 +42,7 @@ public class BackupJson extends Activity
 		setFinishOnTouchOutside(false);
 		        
 		if(isConnected())
-			new HttpAsyncTask().execute("http://192.168.1.102:8888/TestJson/backup.php");
+			new HttpAsyncTask().execute("http://passwordaddressbook.altervista.org/php/backup.php");
 		else
 			createAlert();
 	}

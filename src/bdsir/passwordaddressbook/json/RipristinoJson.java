@@ -46,7 +46,7 @@ public class RipristinoJson extends Activity
 		setFinishOnTouchOutside(false);
 		        
 		if(isConnected())
-			new HttpAsyncTask(this).execute("http://192.168.1.102:8888/TestJson/ripristino.php");
+			new HttpAsyncTask(this).execute("http://passwordaddressbook.altervista.org/php/ripristino.php");
 		else
 			createAlert();
 	}
