@@ -42,6 +42,7 @@ public class ViewAddressBook extends Activity implements OnQueryTextListener, On
 	public static boolean activityForeground = true;
 	public static ProximitySensor sensorListener;
 	public static ArrayList<RecordPassword> list;
+	public static DataBaseHelper databaseHelper;
 	
 	private PowerManager pm;
 	private ArrayList<HashMap<String, Object>> data;
@@ -49,9 +50,8 @@ public class ViewAddressBook extends Activity implements OnQueryTextListener, On
 	private boolean flag;
 	private SimpleAdapter defalutAdapter;
 	private SQLiteDatabase db;
-	public static DataBaseHelper databaseHelper;
-	
 	private SearchView searchView;
+	private static String account = SplashActivity.account;
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -287,6 +287,11 @@ public class ViewAddressBook extends Activity implements OnQueryTextListener, On
 		return flag;
 	}
 
+	public static String getAccount()
+	{
+		return account;
+	}
+	
 	private void displayResults(String inputText)
 	{
 		try
